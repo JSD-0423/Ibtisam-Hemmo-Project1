@@ -38,16 +38,16 @@
 }
 
 .triangle-container {
+  width: 100%;
+
   position: relative;
 }
 
 .blue-triangle {
-  width: 100%;
-  height: 100%;
   position: absolute;
   z-index: 1;
   border-top: 10vh solid var(--brand-primary);
-  border-right: 100vw solid transparent;
+  border-right: 98vw solid transparent;
   /* border-style: solid;
   border-width: 10vh 0 0 100vw;
   border-image: linear-gradient(to bottom right, var(--brand-primary), var(--brand-secondary)) 1; */
@@ -55,7 +55,7 @@
 
 .green-triangle {
   border-top: 10vh solid var(--brand-secondary);
-  border-left: 100vw solid transparent;
+  border-left: 98vw solid transparent;
 }
 
 .welcoming-container {
@@ -75,7 +75,7 @@
 /* Start Styling Main */
 /* Start Styling Search Bar */
 main {
-  background-color: #eff9ff;
+  background-color: var(--bg-body);
   padding-top: 1rem;
   color: var(--body-text);
 }
@@ -186,7 +186,7 @@ h2.title {
   font-size: 13px;
 }
 
-.head-title{
+.head-title {
   margin-bottom: 10px;
 }
 
@@ -201,5 +201,10 @@ h2.title {
   font-weight: 600;
 }
 
+footer {
+  background-color: var(--bg-body);
+  text-align: center;
+  padding-bottom: 0.5rem;
+}
 /* End Styling Courses Section */
 /* End Styling Main */
