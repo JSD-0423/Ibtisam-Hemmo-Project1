@@ -1,0 +1,49 @@
+@media only screen and (max-width: 700px) {
+  .header-button span {
+    display: none;
+  }
+
+  .green-triangle {
+    border-top: 7vh solid var(--brand-secondary);
+  }
+
+  .blue-triangle {
+    border-top: 7vh solid var(--brand-primary);
+  }
+}
+
+@media only screen and (max-width: 650px) {
+  .search-input {
+    width: 90%;
+  }
+
+  .filter-container {
+    border-top: 1px solid var(--lines-color);
+    width: 100%;
+    justify-content: space-between;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .course {
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 700px) and (min-width: 500px) {
+  .course {
+    width: 47%;
+  }
+}
+
+@media screen and (max-width: 900px) and (min-width: 700px) {
+  .course {
+    width: 30%;
+  }
+}
+
+@media screen and (max-width: 1000px) and (min-width: 900px) {
+  .course {
+    width: 23%;
+  }
+}
