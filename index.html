@@ -4,10 +4,10 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="CSS/global.css">
     <link rel="stylesheet" href="CSS/index.css">
-    <script src="JS/index.js"></script>
+    <link rel="stylesheet" href="CSS/responsiveness.css">
+    <script type="module" src="JS/index.js"></script>
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
     <title>Tech</title>
 </head>
@@ -15,16 +15,16 @@
 <body>
     <header>
         <div class="header-container">
-            <h3 class="logo">Web Topics</h3>
+            <h1 class="logo">Web Topics</h1>
             <div class="header-buttons">
                 <button class="dark-mode header-button" aria-label="Dark Mode Button" type="button">
-                    <i class="fa fa-moon-o"></i>
+                    <ion-icon name="moon-outline"></ion-icon>
                     <span>
                         Dark Mode
                     </span>
                 </button>
                 <button class="favorites header-button" aria-label="Favorites Button" type="button">
-                    <i class="fa fa-heart-o" aria-hidden="true"></i>
+                    <ion-icon name="heart-outline"></ion-icon>
                     <span>
                         Favorites
                     </span>
@@ -45,11 +45,11 @@
     <main>
         <div class="search-bar">
             <div class="search-input">
-                <i class="fa fa-search"></i>
+                <ion-icon name="search-outline"></ion-icon>
                 <input type="text" placeholder="Search the website..." />
             </div>
             <div class="filter-container">
-                <div class="sort">
+                <div class="select-menu">
                     <p>Sort by:</p>
                     <select title="filter">
                         <option value="Default">Default</option>
@@ -57,7 +57,7 @@
                         <option value="Back-end">Back-end</option>
                     </select>
                 </div>
-                <div class="filter">
+                <div class="select-menu">
                     <p>Filter by:</p>
                     <select title="filter">
                         <option value="Default">Default</option>
@@ -67,7 +67,13 @@
                 </div>
             </div>
         </div>
+        <div class="courses-container">
+            <!-- <h2>"39" Web Topics Found</h2> -->
+            <div class="courses"></div>
+        </div>
     </main>
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 </body>
 
 </html>
