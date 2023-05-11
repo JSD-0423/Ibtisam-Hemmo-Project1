@@ -3,10 +3,20 @@ import data from './courses.js';
 const coursesContainer = document.querySelector('.courses-container');
 const courses = document.querySelector('.courses');
 const darkModeBtn = document.querySelector('.dark-mode');
+const favoritesBtn = document.querySelector('.favorites');
+const favPopUp = document.getElementById('popup-container');
 
 darkModeBtn.addEventListener('click', () => {
   var root = document.querySelector(':root');
   root.classList.toggle('dark-mode');
+})
+
+favoritesBtn.addEventListener('click', () => {
+  if (favPopUp.style.display === 'block') {
+    favPopUp.style.display = 'none';
+  } else {
+    favPopUp.style.display = 'block';
+  }
 })
 
 const createElement = (type, options, parent) => {
