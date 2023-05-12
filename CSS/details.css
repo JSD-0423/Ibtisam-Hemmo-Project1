@@ -5,8 +5,8 @@
   display: flex;
   height: 41vh;
   padding-left: 3rem;
-  width: 100vw;
-
+  width: 100%;
+  gap: 1rem;
 }
 
 .topic-container {
@@ -91,4 +91,31 @@ p.credits {
 
 .heart-icon {
   font-size: 32px;
+}
+
+.sub-topics-container {
+  padding: 1rem 0;
+  margin-top: 2rem;
+  background-color: var(--bg-default);
+  border-radius: 5px;
+  border: 1px solid #938c8c38;
+  width: 34%;
+  margin-left: 11.5rem;
+}
+
+.sub-topics-container > h1 {
+  padding: 0 1rem 1rem;
+}
+
+.sub-topics-container .topic {
+  display: flex;
+  gap: 1rem;
+  list-style-type: none;
+  padding: 1rem;
+  border-top: 1px solid #938c8c30;
+}
+
+.check-icon {
+  color: var(--brand-secondary);
+  font-size: 1.5rem;
 }

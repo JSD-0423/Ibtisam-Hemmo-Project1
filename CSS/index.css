@@ -204,6 +204,7 @@ h2.title {
 }
 
 footer {
+  padding-top: 1rem;
   background-color: var(--bg-body);
   text-align: center;
   padding-bottom: 0.5rem;
