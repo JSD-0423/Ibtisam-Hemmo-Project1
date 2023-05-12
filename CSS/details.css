@@ -1,0 +1,92 @@
+.topic-more {
+  padding-top: 2rem;
+  color: white;
+  background-color: #333333;
+  display: flex;
+  height: 41vh;
+  padding-left: 3rem;
+}
+
+.topic-container {
+  max-width: 50vw;
+  margin-left: 9rem;
+}
+
+h2.course-type {
+  font-size: medium;
+  color: var(--brand-secondary);
+}
+
+h3.course-title {
+  font-size: x-large;
+  margin-top: 0.3rem;
+}
+
+.rates-container {
+  color: orange;
+}
+
+p.course-description {
+  font-size: 16px;
+  margin-top: 1rem;
+  max-width: 36vw;
+  font-weight: 600;
+}
+
+.course-card-container {
+  color: black;
+  background-color: white;
+  height: fit-content;
+  width: 305px;
+  border: 2px solid white;
+  box-shadow: 0px 1px 1px 1px #938c8c8f;
+}
+
+.course-card-container img {
+  width: 100%;
+}
+
+.course-info {
+  padding: 1rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.more-container {
+  border: 1px solid var(--lines-color);
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+button.add-fav {
+  padding: 0.7rem 1rem;
+  background-color: var(--brand-secondary);
+  border: none;
+  color: white;
+  font-size: 20px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+span.author {
+  text-decoration: underline;
+  color: blue;
+}
+
+span.course-title {
+  font-weight: 600;
+}
+
+p.credits {
+  align-self: center;
+  color: var(--lines-color);
+  font-size: smaller;
+}
+
+.heart-icon {
+  font-size: 32px;
+}

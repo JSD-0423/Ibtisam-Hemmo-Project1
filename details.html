@@ -1,14 +1,107 @@
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="CSS/global.css">
+    <link rel="stylesheet" href="CSS/index.css">
     <link rel="stylesheet" href="CSS/details.css">
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <script type="module" src="JS/index.js"></script>
+
     <title>Details</title>
 </head>
+
 <body>
-    
+    <header>
+        <div class="header-container">
+            <h1 class="logo">Web Topics</h1>
+            <div class="header-buttons">
+                <button class="dark-mode header-button" aria-label="Dark Mode Button" type="button">
+                    <ion-icon name="moon-outline"></ion-icon>
+                    <span>
+                        Dark Mode
+                    </span>
+                </button>
+                <button class="favorites header-button" aria-label="Favorites Button" type="button">
+                    <ion-icon name="heart-outline"></ion-icon>
+                    <span>
+                        Favorites
+                    </span>
+                </button>
+            </div>
+        </div>
+        <div class="about-container">
+            <div class="triangle-container">
+                <div class="blue-triangle"></div>
+                <div class="green-triangle"></div>
+            </div>
+            <div class="welcoming-container">
+                <h2>Welcome to our website!</h2>
+                <p>We have a new design, that is fresh, modern, and easy to use.</p>
+            </div>
+        </div>
+    </header>
+    <section>
+        <div class="topic-more">
+            <div class="topic-container">
+                <h2 class="course-type">Web Development Languages</h2>
+                <h3 class="course-title">HTML</h3>
+                <div class="rates-container">
+                    <ion-icon name="star" role="img" class="md hydrated"></ion-icon>
+                    <ion-icon name="star" role="img" class="md hydrated"></ion-icon>
+                    <ion-icon name="star" role="img" class="md hydrated"></ion-icon>
+                    <ion-icon name="star" role="img" class="md hydrated"></ion-icon>
+                    <ion-icon name="star-outline" role="img" class="md hydrated"></ion-icon>
+                </div>
+                <p class="course-description">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Corporis, quos.
+                    Corrupti ut eius voluptatem voluptatum quibusdam incidunt dolorem optio eveniet, eos unde inventore
+                    saepe praesentium culpa blanditiis necessitatibus explicabo molestias, impedit eaque esse odit!
+                    Asperiores.</p>
+            </div>
+            <div class="course-card-container">
+                <img src="./assets/javascript.jpg" alt="JS">
+                <div class="course-info">
+                    <p>
+                        <span class="course-title">HTML</span>
+                        by
+                        <span class="author">Sarah Smith</span>
+                    </p>
+                    <div class="more-container">
+                        <p>Interested about this topic?</p>
+                        <button class="add-fav" type="submit">
+                            Add to Favorites
+                            <ion-icon name="heart-outline" class="heart-icon"></ion-icon>
+                        </button>
+                        <p class="credits">Unlimited Credits</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </section>
+    <div id="popup-container">
+        <h3>My Favorite Topics</h3>
+        <div class="favorites-container">
+            <div class="fav-card">
+                <img src="./assets/react.webp" alt="image">
+                <div class="card-info">
+                    <h5>React</h5>
+                    <div class="rates-container">
+                        <ion-icon name="star" role="img" class="md hydrated"></ion-icon>
+                        <ion-icon name="star" role="img" class="md hydrated"></ion-icon>
+                        <ion-icon name="star" role="img" class="md hydrated"></ion-icon>
+                        <ion-icon name="star" role="img" class="md hydrated"></ion-icon>
+                        <ion-icon name="star-outline" role="img" class="md hydrated"></ion-icon>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+
 </body>
+
 </html>
