@@ -1,61 +1,44 @@
 import data from './courses.js';
+import { createElement, createRatingStars } from './common.js';
 
 const coursesContainer = document.querySelector('.courses-container');
 const courses = document.querySelector('.courses');
 const darkModeBtn = document.querySelector('.dark-mode');
+const modeIcon = document.getElementById('mode-icon');
+const modeText = document.getElementById('mode-text');
 const favoritesBtn = document.querySelector('.favorites');
 const favPopUp = document.getElementById('popup-container');
+const favIcon = document.getElementById('fav-icon');
 
 darkModeBtn.addEventListener('click', () => {
   var root = document.querySelector(':root');
   root.classList.toggle('dark-mode');
+  if (modeIcon.getAttribute('name') === 'moon-outline') {
+    modeIcon.setAttribute('name', 'sunny-outline');
+    modeText.textContent = 'Light Mode';
+  } else {
+    modeIcon.setAttribute('name', 'moon-outline');
+    modeText.textContent = 'Dark Mode';
+  }
 })
 
 favoritesBtn.addEventListener('click', () => {
   if (favPopUp.style.display === 'block') {
     favPopUp.style.display = 'none';
+    favIcon.setAttribute('name', 'heart-outline');
+    favIcon.style.color = 'black';
   } else {
     favPopUp.style.display = 'block';
+    favIcon.setAttribute('name', 'heart');
+    favIcon.style.color = 'red';
   }
 })
 
-const createElement = (type, options, parent) => {
-  const element = document.createElement(type);
-  for (let option in options) {
-    if (option == 'textContent') {
-      element.textContent = options[option];
-    }
-    else {
-      element.setAttribute(option, options[option]);
-    }
-  }
-  parent.appendChild(element);
-  return element;
-}
-
-const createRatingStars = (rating, parent) => {
-  const MAX_STARS = 5;
-  const ratingPercentage = (rating / 100) * MAX_STARS;
-  const wholeStars = Math.floor(ratingPercentage);
-  const halfStars = Math.ceil(ratingPercentage - wholeStars);
-  const emptyStars = MAX_STARS - wholeStars - halfStars;
-
-  for (let i = 0; i < wholeStars; i++) {
-    createElement('ion-icon', { name: 'star' }, parent);
-  }
-  for (let i = 0; i < halfStars; i++) {
-    createElement('ion-icon', { name: 'star-half' }, parent);
-  }
-  for (let i = 0; i < emptyStars; i++) {
-    createElement('ion-icon', { name: 'star-outline' }, parent);
-  }
-};
-
-
 createElement('h2', { textContent: `"${data.length}" Web Topics Found`, class: 'title' }, coursesContainer)
 
-data.map(course => {
+data.map((course, index) => {
   const card = createElement('div', { class: 'course' }, courses);
+  card.setAttribute('data-index', index);
   createElement('img', { src: course.image }, card);
   const info = createElement('div', { class: 'info' }, card);
   const head = createElement('div', { class: 'head-title' }, info);
@@ -65,5 +48,8 @@ data.map(course => {
   const rate = createElement('div', { class: 'rate-container', }, footer);
   createRatingStars(course.rating, rate);
   createElement('div', { class: 'author-name', textContent: 'Author: ' + course.author }, footer);
-})
 
+  card.addEventListener('click', () => {
+    window.location.href = `details.html?cardIndex=${index}`;
+  });
+})
