@@ -72,6 +72,18 @@ button.add-fav {
   display: flex;
   align-items: center;
   gap: 5px;
+  cursor: pointer;
+}
+
+.add-fav:not(:disabled):hover {
+  transition: transform 0.3s ease;
+  transform: scale(1.03);
+  background-color: #028d5d;
+}
+
+.add-fav[disabled] {
+  opacity: 0.6;
+  cursor: not-allowed;
 }
 
 span.author {
