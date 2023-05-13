@@ -1,4 +1,4 @@
-export const createElement = (type, options, parent) => {
+const createElement = (type, options, parent) => {
     const element = document.createElement(type);
     for (let option in options) {
         if (option == 'textContent') {
@@ -12,7 +12,7 @@ export const createElement = (type, options, parent) => {
     return element;
 }
 
-export const createRatingStars = (rating, parent) => {
+const createRatingStars = (rating, parent) => {
     const MAX_STARS = 5;
     const ratingPercentage = (rating / 100) * MAX_STARS;
     const wholeStars = Math.floor(ratingPercentage);
@@ -29,3 +29,8 @@ export const createRatingStars = (rating, parent) => {
         createElement('ion-icon', { name: 'star-outline' }, parent);
     }
 };
+
+export{
+    createElement,
+    createRatingStars
+}
