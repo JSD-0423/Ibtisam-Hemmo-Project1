@@ -28,11 +28,37 @@
   .course {
     width: 100%;
   }
+  .sub-topics-container {
+    width: 62%;
+    margin-top: 14rem;
+    margin-left: 3rem;
+  }
+}
+
+@media screen and (max-width: 500px) and (min-width: 400px) {
+  .sub-topics-container {
+    width: 62%;
+    margin-top: 14rem;
+    margin-left: 3rem;
+  }
+}
+
+@media screen and (max-width: 666px) and (min-width: 357px) {
+  .sub-topics-container {
+    width: 82%;
+    margin-top: 27rem;
+    margin-left: 3rem;
+  }
 }
 
 @media screen and (max-width: 700px) and (min-width: 500px) {
   .course {
     width: 47%;
+  }
+  .sub-topics-container {
+    width: 50%;
+    margin-top: 12rem;
+    margin-left: 3rem;
   }
 }
 
@@ -48,7 +74,7 @@
   }
 }
 
-@media screen and (min-width: 1222px){
+@media screen and (min-width: 1222px) {
   .topic-more {
     height: 40vh;
   }
@@ -59,6 +85,9 @@
     height: 46vh;
     padding-left: 0rem;
     gap: 25px;
+  }
+  .sub-topics-container {
+    width: 40%;
   }
 }
 @media screen and (min-width: 700px) and (max-width: 850px) {
