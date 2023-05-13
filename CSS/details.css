@@ -109,6 +109,7 @@ p.credits {
   padding: 1rem 0;
   margin-top: 2rem;
   background-color: var(--bg-default);
+  color: var(--body-text);
   border-radius: 5px;
   border: 1px solid #938c8c38;
   width: 34%;
