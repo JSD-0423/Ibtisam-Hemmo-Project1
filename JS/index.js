@@ -11,6 +11,8 @@ const favPopUp = document.getElementById('popup-container');
 const favIcon = document.getElementById('fav-icon');
 const searchInput = document.getElementById('search-input');
 const searchedTitle = document.querySelector('.searched-title');
+const filterSelectMenu = document.getElementById('filter-menu');
+const sortSelectMenu = document.getElementById('sort-menu');
 
 darkModeBtn.addEventListener('click', () => {
   var root = document.querySelector(':root');
@@ -40,6 +42,29 @@ searchInput.addEventListener('input', () => {
   let searchValue = searchInput.value.toLowerCase();
   const searchedTopics = data.filter(topic => topic.title.toLowerCase().includes(searchValue));
   createCards(searchedTopics);
+});
+
+filterSelectMenu.addEventListener('change', (e) => {
+  const selectedOption = e.target.value;
+  if (selectedOption == 'Default') {
+    createCards(data)
+  } else {
+    const filteredTopics = data.filter(topic => topic.type === selectedOption)
+    createCards(filteredTopics)
+  }
+});
+
+sortSelectMenu.addEventListener('change', (e) => {
+  const selectedOption = e.target.value;
+  if (selectedOption === 'Top-Rated') {
+    const sortedTopics = data.filter(topic => topic.rating >= 50);
+    createCards(sortedTopics)
+  } else if (selectedOption === 'Least-Rated') {
+    const sortedTopics = data.filter(topic => topic.rating < 50);
+    createCards(sortedTopics)
+  } else {
+    createCards(data);
+  }
 });
 
 createCards(data);
