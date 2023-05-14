@@ -45,29 +45,29 @@
         <div class="search-bar">
             <div class="search-input">
                 <ion-icon name="search-outline"></ion-icon>
-                <input type="text" placeholder="Search the website..." />
+                <input type="text" id="search-input" placeholder="Search the website..." />
             </div>
             <div class="filter-container">
                 <div class="select-menu">
                     <p>Sort by:</p>
-                    <select title="filter">
-                        <option value="Default">Default</option>
-                        <option value="Front-end">Front-end</option>
-                        <option value="Back-end">Back-end</option>
-                    </select>
-                </div>
-                <div class="select-menu">
-                    <p>Filter by:</p>
-                    <select title="filter">
+                    <select title="sort" id="sort-menu">
                         <option value="Default">Default</option>
                         <option value="Top-Rated">Top-Rated</option>
                         <option value="Least-Rated">Least-Rated</option>
                     </select>
                 </div>
+                <div class="select-menu">
+                    <p>Filter by:</p>
+                    <select title="filter" id="filter-menu">
+                        <option value="Default">Default</option>
+                        <option value="Front-end">Front-end</option>
+                        <option value="Back-end">Back-end</option>
+                    </select>
+                </div>
             </div>
         </div>
         <div class="courses-container">
-            <!-- <h2>"39" Web Topics Found</h2> -->
+            <h2 class="searched-title"></h2>
             <div class="courses"></div>
         </div>
     </main>
@@ -81,7 +81,7 @@
         </div>
         <div class="favorites-container"></div>
     </div>
-    
+
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
     <script type="module" src="JS/common.js"></script>

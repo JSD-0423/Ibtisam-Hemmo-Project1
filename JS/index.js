@@ -9,6 +9,10 @@ const modeText = document.getElementById('mode-text');
 const favoritesBtn = document.querySelector('.favorites');
 const favPopUp = document.getElementById('popup-container');
 const favIcon = document.getElementById('fav-icon');
+const searchInput = document.getElementById('search-input');
+const searchedTitle = document.querySelector('.searched-title');
+const filterSelectMenu = document.getElementById('filter-menu');
+const sortSelectMenu = document.getElementById('sort-menu');
 
 darkModeBtn.addEventListener('click', () => {
   var root = document.querySelector(':root');
@@ -34,22 +38,56 @@ favoritesBtn.addEventListener('click', () => {
   }
 })
 
-createElement('h2', { textContent: `"${data.length}" Web Topics Found`, class: 'title' }, coursesContainer)
+searchInput.addEventListener('input', () => {
+  let searchValue = searchInput.value.toLowerCase();
+  const searchedTopics = data.filter(topic => topic.title.toLowerCase().includes(searchValue));
+  createCards(searchedTopics);
+});
 
-data.map((course, index) => {
-  const card = createElement('div', { class: 'course' }, courses);
-  card.setAttribute('data-index', index);
-  createElement('img', { src: course.image }, card);
-  const info = createElement('div', { class: 'info' }, card);
-  const head = createElement('div', { class: 'head-title' }, info);
-  createElement('p', { textContent: course.description }, head);
-  createElement('h5', { textContent: course.title }, head);
-  const footer = createElement('div', { class: 'footer' }, info);
-  const rate = createElement('div', { class: 'rate-container', }, footer);
-  createRatingStars(course.rating, rate);
-  createElement('div', { class: 'author-name', textContent: 'Author: ' + course.author }, footer);
+filterSelectMenu.addEventListener('change', (e) => {
+  const selectedOption = e.target.value;
+  if (selectedOption == 'Default') {
+    createCards(data)
+  } else {
+    const filteredTopics = data.filter(topic => topic.type === selectedOption)
+    createCards(filteredTopics)
+  }
+});
 
-  card.addEventListener('click', () => {
-    window.location.href = `details.html?cardIndex=${index}`;
-  });
-})
+sortSelectMenu.addEventListener('change', (e) => {
+  const selectedOption = e.target.value;
+  if (selectedOption === 'Top-Rated') {
+    const sortedTopics = data.filter(topic => topic.rating >= 50);
+    createCards(sortedTopics)
+  } else if (selectedOption === 'Least-Rated') {
+    const sortedTopics = data.filter(topic => topic.rating < 50);
+    createCards(sortedTopics)
+  } else {
+    createCards(data);
+  }
+});
+
+createCards(data);
+
+function createCards(topics) {
+  courses.innerHTML = '';
+  searchedTitle.textContent = `"${topics.length}" Web Topics Found`;
+  topics.map((course, index) => {
+    const card = createElement('div', { class: 'course' }, courses);
+    card.setAttribute('data-index', index);
+    createElement('img', { src: course.image }, card);
+    const info = createElement('div', { class: 'info' }, card);
+    const head = createElement('div', { class: 'head-title' }, info);
+    createElement('p', { textContent: course.description }, head);
+    createElement('h5', { textContent: course.title }, head);
+    const footer = createElement('div', { class: 'footer' }, info);
+    const rate = createElement('div', { class: 'rate-container', }, footer);
+    createRatingStars(course.rating, rate);
+    createElement('div', { class: 'author-name', textContent: 'Author: ' + course.author }, footer);
+
+    card.addEventListener('click', () => {
+      window.location.href = `details.html?cardIndex=${index}`;
+    });
+  })
+}
+
