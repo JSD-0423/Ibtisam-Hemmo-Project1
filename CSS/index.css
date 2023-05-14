@@ -134,10 +134,10 @@ main {
 .courses-container {
   display: flex;
   margin: 0 2.5em;
-  flex-direction: column-reverse;
+  flex-direction: column;
 }
 
-h2.title {
+.searched-title {
   margin: 1.2rem 0;
 }
 
@@ -147,7 +147,7 @@ h2.title {
   display: flex;
   flex-wrap: wrap;
   align-items: stretch;
-  justify-content: space-between;
+  gap: 1.1rem;
 }
 
 .course {
