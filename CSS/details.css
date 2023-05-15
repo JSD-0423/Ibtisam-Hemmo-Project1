@@ -1,3 +1,9 @@
+.logo-link {
+  text-decoration: none;
+  color: var(--brand-primary);
+  font-size: 0.5rem;
+}
+
 .topic-more {
   padding-top: 2rem;
   color: white;
@@ -132,4 +138,8 @@ p.credits {
 .check-icon {
   color: var(--brand-secondary);
   font-size: 1.5rem;
+}
+
+footer {
+  background-color: var(--bg-default);
 }
