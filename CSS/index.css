@@ -1,6 +1,7 @@
 /* Start Styling Main */
 
 main {
+  flex-grow: 1;
   background-color: var(--bg-body);
   padding-top: 1rem;
   color: var(--body-text);
@@ -21,10 +22,14 @@ main {
 .courses {
   display: flex;
   align-items: center;
+  justify-content: space-between;
   display: flex;
   flex-wrap: wrap;
   align-items: stretch;
-  gap: 1.1rem;
+}
+
+.courses.justify-flex-start {
+  justify-content: flex-start;
 }
 
 .course {
@@ -86,8 +91,9 @@ footer {
   text-align: center;
   padding-bottom: 0.5rem;
   color: var(--body-text);
+  bottom: 0;
+  flex-shrink: 0;
 }
 /* End Styling Courses Section */
 
 /* End Styling Main */
-
