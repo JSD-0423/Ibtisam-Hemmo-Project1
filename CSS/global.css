@@ -48,7 +48,7 @@ header {
 .header-container {
   display: flex;
   justify-content: space-between;
-  padding: 0.7em;
+  padding: 0.7em 0;
   margin: 0 2.5em;
   align-items: center;
 }
@@ -140,13 +140,18 @@ header {
   align-items: center;
 }
 
+.search-icon {
+  position: absolute;
+  margin-left: 1rem;
+}
+
 .search-input > input {
   color: var(--body-text);
   background-color: var(--bg_default);
-  border: 0;
-  outline: 0;
+  border: 0px;
   padding: 1rem;
   width: 100%;
+  padding-left: 2.7rem;
 }
 
 .filter-container {
