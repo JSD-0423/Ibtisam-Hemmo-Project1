@@ -48,7 +48,7 @@ header {
 .header-container {
   display: flex;
   justify-content: space-between;
-  padding: 0.7em 0;
+  padding: 1em 0;
   margin: 0 2.5em;
   align-items: center;
 }
@@ -86,18 +86,20 @@ header {
 
 .triangle-container {
   width: 100%;
-
   position: relative;
 }
 
 .blue-triangle {
+  width: 80%;
+  height: 10vh;
   position: absolute;
-  z-index: 1;
-  border-top: 10vh solid var(--brand-primary);
-  border-right: 98vw solid transparent;
-  /* border-style: solid;
-  border-width: 10vh 0 0 100vw;
-  border-image: linear-gradient(to bottom right, var(--brand-primary), var(--brand-secondary)) 1; */
+  background: linear-gradient(
+    45deg,
+    var(--brand-primary),
+    rgb(5, 155, 145) 40%,
+    rgba(5, 105, 175, 0.5)
+  );
+  clip-path: polygon(0% 0%, 100% 0%, 0% 100%);
 }
 
 .green-triangle {

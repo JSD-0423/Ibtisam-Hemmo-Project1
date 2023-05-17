@@ -1,6 +1,6 @@
 @media screen and (max-width: 667px) {
   .header-container {
-    margin: 0 0.2em;
+    margin: 0 0.7em;
   }
 
   .welcoming-container,
@@ -45,10 +45,6 @@
     justify-content: space-between;
   }
 }
-/* 
-@media screen and (max-width: 360px){
-
-} */
 
 @media screen and (min-width: 500px) and (max-width: 700px) {
   .course {
@@ -66,7 +62,7 @@
   }
 
   .blue-triangle {
-    border-top: 7vh solid var(--brand-primary);
+    height: 7vh;
   }
 
   .topic-more {
