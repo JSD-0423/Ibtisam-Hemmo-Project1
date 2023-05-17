@@ -1,14 +1,21 @@
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta property="title" content="Web Topics | Main Page">
+    <meta property="description"
+        content="Explore a wide range of web courses and enhance your skills in front-end and back-end development. Discover top-rated courses on Web Topics and stay up-to-date with the latest web technologies.">
+    <meta name="keywords"
+        content="Web Topics, web courses, front-end development, back-end development, top rated courses, web technologies">
+    <meta property="og:url" content="https://jsd-0423.github.io/Ibtisam-Hemmo-Project1/">
     <link rel="stylesheet" href="CSS/global.css">
     <link rel="stylesheet" href="CSS/index.css">
     <link rel="stylesheet" href="CSS/responsiveness.css">
-    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
-    <title>Tech</title>
+    <link rel="shortcut icon" href="assets/icon1.png" type="image/x-icon" alt="Web Topics Icon">
+    <title>Web Topics | Main Page</title>
 </head>
 
 <body>
@@ -17,13 +24,13 @@
             <h1 class="logo">Web Topics</h1>
             <div class="header-buttons">
                 <button class="dark-mode header-button" aria-label="Dark Mode Button" type="button">
-                    <ion-icon id="mode-icon" name="moon-outline"></ion-icon>
+                    <ion-icon id="mode-icon" name="moon-outline" alt="Dark Mode Icon" aria-hidden="true"></ion-icon>
                     <span id="mode-text">
                         Dark Mode
                     </span>
                 </button>
-                <button class="favorites header-button" aria-label="Favorites Button" type="button">
-                    <ion-icon id="fav-icon" name="heart-outline"></ion-icon>
+                <button class="favorites header-button" aria-label="Favorites Button" type="button" aria-hidden="true">
+                    <ion-icon id="fav-icon" name="heart-outline" alt="Favorites Icon"></ion-icon>
                     <span>
                         Favorites
                     </span>
@@ -42,14 +49,14 @@
         </div>
     </header>
     <main>
-        <div class="search-bar">
+        <section class="search-bar" role="search">
             <div class="search-input">
-                <ion-icon name="search-outline"></ion-icon>
-                <input type="text" id="search-input" placeholder="Search the website..." />
+                <ion-icon class="search-icon" name="search-outline" alt="Search Icon" aria-hidden="true"></ion-icon>
+                <input type="text" id="search-input" placeholder="Search the website..." aria-label="Search input" />
             </div>
             <div class="filter-container">
                 <div class="select-menu">
-                    <p>Sort by:</p>
+                    <label for="sort-menu" class="select-label">Sort by:</label>
                     <select title="sort" id="sort-menu">
                         <option value="Default">Default</option>
                         <option value="Top-Rated">Top-Rated</option>
@@ -57,7 +64,7 @@
                     </select>
                 </div>
                 <div class="select-menu">
-                    <p>Filter by:</p>
+                    <label for="filter-menu" class="select-label">Filter by:</label>
                     <select title="filter" id="filter-menu">
                         <option value="Default">Default</option>
                         <option value="Front-end">Front-end</option>
@@ -65,22 +72,22 @@
                     </select>
                 </div>
             </div>
-        </div>
-        <div class="courses-container">
+        </section>
+        <section class="courses-container" role="main" aria-label="Courses">
             <h2 class="searched-title"></h2>
             <div class="courses"></div>
-        </div>
+        </section>
     </main>
     <footer>
         Developed with &#128151 &copy Ibtisam Hemmo 2023
     </footer>
-    <div id="popup-container">
+    <section id="popup-container" role="complementary" aria-labelledby="popup-favorites">
         <div class="fav-title">
-            <h3>My Favorite Topics</h3>
-            <ion-icon name="trash-outline" class="delete-btn"></ion-icon>
+            <h2>My Favorite Topics</h2>
+            <ion-icon name="trash-outline" class="delete-btn" alt="Delete icon"></ion-icon>
         </div>
         <div class="favorites-container"></div>
-    </div>
+    </section>
 
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>

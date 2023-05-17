@@ -1,134 +1,12 @@
-/* Start Styling Header */
-.header-container {
-  display: flex;
-  justify-content: space-between;
-  padding: 0.7em;
-  margin: 0 2.5em;
-  align-items: center;
-}
-
-.logo {
-  font-size: 1em;
-  color: var(--brand-primary);
-}
-
-.header-buttons {
-  display: flex;
-  justify-content: space-around;
-  gap: 5px;
-}
-
-.header-button {
-  color: var(--body-text);
-  padding: 5px 13px;
-  display: flex;
-  gap: 5px;
-  background-color: transparent;
-  border-radius: 4px;
-  border: 1px solid var(--lines-color);
-  cursor: pointer;
-  font-size: 1rem;
-  align-items: center;
-  justify-content: space-around;
-}
-
-.about-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.triangle-container {
-  width: 100%;
-
-  position: relative;
-}
-
-.blue-triangle {
-  position: absolute;
-  z-index: 1;
-  border-top: 10vh solid var(--brand-primary);
-  border-right: 98vw solid transparent;
-  /* border-style: solid;
-  border-width: 10vh 0 0 100vw;
-  border-image: linear-gradient(to bottom right, var(--brand-primary), var(--brand-secondary)) 1; */
-}
-
-.green-triangle {
-  border-top: 10vh solid var(--brand-secondary);
-  border-left: 98vw solid transparent;
-}
-
-.welcoming-container {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  margin-left: 20px;
-  margin-bottom: 1rem;
-  color: var(--body-text);
-}
-
-.welcoming-container > h2 {
-  color: var(--brand-secondary);
-}
-
-/* End Styling Header */
-
 /* Start Styling Main */
-/* Start Styling Search Bar */
+
 main {
+  flex-grow: 1;
   background-color: var(--bg-body);
   padding-top: 1rem;
   color: var(--body-text);
 }
 
-.search-bar {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  align-items: center;
-  gap: 0.5rem;
-  margin: 0 2.5em;
-  border-radius: 0.5rem;
-  background-color: var(--bg-default);
-  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
-}
-
-.search-input {
-  padding-left: 1rem;
-  display: flex;
-  align-items: center;
-}
-
-.search-input > input {
-  color: var(--body-text);
-  background-color: var(--bg_default);
-  border: 0;
-  outline: 0;
-  padding: 1rem;
-  width: 100%;
-}
-
-.filter-container {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  font-size: 13px;
-}
-
-.select-menu {
-  border-left: 1px solid var(--lines-color);
-  padding: 5px 15px;
-}
-
-.filter-container select {
-  border: none;
-  outline: none;
-  background: transparent;
-  color: var(--body-text);
-  width: 110px;
-}
-/* End Styling Search bar */
 /* Start Styling Courses Section */
 
 .courses-container {
@@ -144,10 +22,15 @@ main {
 .courses {
   display: flex;
   align-items: center;
+  justify-content: space-between;
   display: flex;
   flex-wrap: wrap;
   align-items: stretch;
-  gap: 1.1rem;
+}
+
+.courses.justify-flex-start {
+  justify-content: flex-start;
+  gap: 1rem;
 }
 
 .course {
@@ -164,7 +47,8 @@ main {
 
 .courses img {
   width: 100%;
-  height: 200px;
+  height: 150px;
+  background-color: white;
 }
 
 .courses img:hover {
@@ -209,84 +93,9 @@ footer {
   text-align: center;
   padding-bottom: 0.5rem;
   color: var(--body-text);
+  bottom: 0;
+  flex-shrink: 0;
 }
 /* End Styling Courses Section */
+
 /* End Styling Main */
-
-/* Start Styling Favorites Popup */
-#popup-container {
-  position: fixed;
-  bottom: 0;
-  height: 35vh;
-  padding: 1.2rem;
-  background-color: var(--bg-default);
-  z-index: 999;
-  width: 100vw;
-  color: var(--body-text);
-  display: none;
-  overflow-y: scroll;
-}
-
-.show {
-  display: block;
-}
-
-.favorites-container {
-  margin-top: 1rem;
-  gap: 1rem;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: flex-start;
-  align-items: stretch;
-}
-
-.fav-title {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.delete-btn {
-  font-size: 1.7rem;
-  color: var(--brand-primary);
-  cursor: pointer;
-}
-
-.delete-btn:hover {
-  transition: transform 0.3s ease;
-  transform: scale(1.2);
-  color: #028d8d;
-}
-
-.fav-card {
-  display: flex;
-  flex-direction: column;
-  background-color: var(--bg-default);
-  width: 150px;
-  border-radius: 0.3rem;
-  overflow: hidden;
-  box-shadow: 0px 0px 1px 1px #5e5a5a29;
-}
-
-.fav-img {
-  height: 70px;
-}
-
-.rates-container {
-  color: orange;
-}
-
-.card-info {
-  padding: 0.5rem;
-  display: flex;
-  flex-direction: column;
-}
-
-.delete-card-btn {
-  align-self: end;
-  font-size: large;
-  color: var(--brand-primary);
-  cursor: pointer;
-}
-
-/* End Styling Favorites Popup */

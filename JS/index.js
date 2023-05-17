@@ -1,7 +1,6 @@
 import data from './courses.js';
 import { createElement, createRatingStars } from './common.js';
 
-const coursesContainer = document.querySelector('.courses-container');
 const courses = document.querySelector('.courses');
 const darkModeBtn = document.querySelector('.dark-mode');
 const modeIcon = document.getElementById('mode-icon');
@@ -39,35 +38,50 @@ favoritesBtn.addEventListener('click', () => {
 })
 
 searchInput.addEventListener('input', () => {
-  let searchValue = searchInput.value.toLowerCase();
-  const searchedTopics = data.filter(topic => topic.title.toLowerCase().includes(searchValue));
-  createCards(searchedTopics);
+  applyFiltersAndSort();
 });
 
-filterSelectMenu.addEventListener('change', (e) => {
-  const selectedOption = e.target.value;
-  if (selectedOption == 'Default') {
-    createCards(data)
-  } else {
-    const filteredTopics = data.filter(topic => topic.type === selectedOption)
-    createCards(filteredTopics)
-  }
+filterSelectMenu.addEventListener('change', () => {
+  applyFiltersAndSort();
 });
 
-sortSelectMenu.addEventListener('change', (e) => {
-  const selectedOption = e.target.value;
-  if (selectedOption === 'Top-Rated') {
-    const sortedTopics = data.filter(topic => topic.rating >= 50);
-    createCards(sortedTopics)
-  } else if (selectedOption === 'Least-Rated') {
-    const sortedTopics = data.filter(topic => topic.rating < 50);
-    createCards(sortedTopics)
-  } else {
-    createCards(data);
-  }
+sortSelectMenu.addEventListener('change', () => {
+  applyFiltersAndSort();
 });
+
+function applyFiltersAndSort() {
+  let searchValue = searchInput.value.trim().toLowerCase();
+  const selectedFilter = filterSelectMenu.value;
+  const selectedSort = sortSelectMenu.value;
+
+  let filteredTopics = data;
+
+  if (selectedFilter !== 'Default') {
+    filteredTopics = data.filter(topic => topic.type === selectedFilter);
+  }
+
+  if (searchValue) {
+    filteredTopics = filteredTopics.filter(topic => topic.title.toLowerCase().includes(searchValue));
+  }
+
+  let sortedTopics = filteredTopics;
+
+  if (selectedSort === 'Top-Rated') {
+    sortedTopics = filteredTopics.filter(topic => topic.rating >= 50);
+  } else if (selectedSort === 'Least-Rated') {
+    sortedTopics = filteredTopics.filter(topic => topic.rating < 50);
+  }
+  createCards(sortedTopics);
+  updateJustifyContent();
+}
 
 createCards(data);
+
+
+function updateJustifyContent() {
+  const cardCount = courses.childElementCount;
+  courses.classList.toggle('justify-flex-start', cardCount < 5);
+}
 
 function createCards(topics) {
   courses.innerHTML = '';
