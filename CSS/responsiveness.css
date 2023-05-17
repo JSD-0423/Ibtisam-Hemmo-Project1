@@ -14,7 +14,7 @@
   }
 
   .courses-container > h2 {
-    font-size: small;
+    font-size: large;
   }
 
   .select-menu {
@@ -37,6 +37,10 @@
 
   .search-input {
     width: 90%;
+  }
+
+  .courses-container > h2 {
+    font-size: large;
   }
 
   .filter-container {
