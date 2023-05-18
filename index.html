@@ -20,7 +20,7 @@
 
 <body>
     <header>
-        <div class="header-container">
+        <div class="header-container container">
             <h1 class="logo">Web Topics</h1>
             <div class="header-buttons">
                 <button class="dark-mode header-button" aria-label="Dark Mode Button" type="button">
@@ -38,10 +38,8 @@
             </div>
         </div>
         <div class="about-container">
-            <div class="triangle-container">
-                <div class="blue-triangle"></div>
-                <div class="green-triangle"></div>
-            </div>
+            <div class="blue-triangle"></div>
+            <div class="green-triangle"></div>
             <div class="welcoming-container">
                 <h2>Welcome to our website!</h2>
                 <p>We have a new design, that is fresh, modern, and easy to use.</p>
@@ -49,7 +47,7 @@
         </div>
     </header>
     <main>
-        <section class="search-bar" role="search">
+        <section class="search-bar container" role="search">
             <div class="search-input">
                 <ion-icon class="search-icon" name="search-outline" alt="Search Icon" aria-hidden="true"></ion-icon>
                 <input type="text" id="search-input" placeholder="Search the website..." aria-label="Search input" />
@@ -79,12 +77,15 @@
         </section>
     </main>
     <footer>
-        Developed with &#128151 &copy Ibtisam Hemmo 2023
+        Developed with 
+        <ion-icon name="heart" class="colored-icon"></ion-icon> 
+         &copy 2023
     </footer>
+
     <section id="popup-container" role="complementary" aria-labelledby="popup-favorites">
         <div class="fav-title">
             <h2>My Favorite Topics</h2>
-            <ion-icon name="trash-outline" class="delete-btn" alt="Delete icon"></ion-icon>
+            <!-- <ion-icon name="trash-outline" class="delete-btn" alt="Delete icon"></ion-icon> -->
         </div>
         <div class="favorites-container"></div>
     </section>
