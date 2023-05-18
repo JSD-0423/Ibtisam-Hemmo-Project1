@@ -29,10 +29,6 @@
     justify-content: center;
     align-items: center;
   }
-
-  footer {
-    margin: 1rem;
-  }
 }
 
 @media screen and (max-width: 500px) {
