@@ -8,26 +8,29 @@ const favorites = loadFavorites();
 const favoritesContainer = document.querySelector('.favorites-container');
 const deleteBtn = document.querySelector('.delete-btn');
 
-const topicMoreContainer = document.querySelector('.topic-more');
-if (topicMoreContainer) {
-    const topicContainer = createElement('div', { class: 'topic-container' }, topicMoreContainer);
-    createElement('h2', { class: 'course-type', textContent: cardDetails.description }, topicContainer);
-    createElement('h3', { class: 'course-title', textContent: cardDetails.title }, topicContainer);
-    const ratesContainer = createElement('div', { class: 'rate-container' }, topicContainer);
+const details = document.querySelector('.details');
+if (details) {
+    const textContainer = createElement('div', { class: 'text-container' }, details);
+    const container1 = createElement('div', {}, textContainer);
+    createElement('h2', { class: 'colored-title', textContent: cardDetails.description }, container1);
+    createElement('h3', { class: 'course-title', textContent: cardDetails.title }, container1);
+    const ratesContainer = createElement('div', { class: 'icons-container' }, container1);
     createRatingStars(cardDetails.rating, ratesContainer);
-    createElement('p', { class: 'course-description', textContent: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Corporis, quos.Corrupti ut eius voluptatem voluptatum quibusdam incidunt dolorem optio eveniet, eos unde inventoresaepe praesentium culpa blanditiis necessitatibus explicabo molestias, impedit eaque esse odit!Asperiores.' }, topicContainer);
+    createElement('p', { class: 'weight-text', textContent: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Corporis, quos.Corrupti ut eius voluptatem voluptatum quibusdam incidunt dolorem optio eveniet, eos unde inventoresaepe praesentium culpa blanditiis necessitatibus explicabo molestias, impedit eaque esse odit!Asperiores.' }, textContainer);
 
-    const courseContainer = createElement('div', { class: 'course-card-container', id: cardIndex }, topicMoreContainer);
-    createElement('img', { src: cardDetails.image, alt: cardDetails.title }, courseContainer);
-    const courseInfo = createElement('div', { class: 'course-info' }, courseContainer);
+    const courseContainer = createElement('div', { class: 'card', id: cardIndex }, details);
+    const card = createElement('div', {}, courseContainer);
+
+    createElement('img', { src: cardDetails.image, alt: cardDetails.title }, card);
+    const courseInfo = createElement('div', { class: 'card-outside-details' }, card);
     const statement = createElement('p', {}, courseInfo);
-    createElement('span', { class: 'course-title', textContent: cardDetails.title + ' by ' }, statement)
+    createElement('b', {textContent: cardDetails.title + ' by ' }, statement)
     createElement('span', { class: 'author', textContent: cardDetails.author }, statement)
-    const moreContainer = createElement('div', { class: 'more-container' }, courseInfo);
-    createElement('p', { textContent: 'Interested about this topic?' }, moreContainer);
-    const addFav = createElement('button', { textContent: 'Add to Favorites', type: 'submit', class: 'add-fav' }, moreContainer);
-    createElement('ion-icon', { name: 'heart-outline', class: 'heart-icon' }, addFav);
-    createElement('p', { textContent: 'Unlimited Credits', class: 'credits' }, moreContainer);
+    const outlinedCard = createElement('div', { class: 'outlined-card' }, courseInfo);
+    createElement('p', { textContent: 'Interested about this topic?' }, outlinedCard);
+    const addFav = createElement('button', { textContent: 'Add to Favorites', type: 'submit', class: 'card-button add-fav' }, outlinedCard);
+    createElement('ion-icon', { name: 'heart-outline', class: 'heart-icon heard-card' }, addFav);
+    createElement('p', { textContent: 'Unlimited Credits', class: 'credits' }, outlinedCard);
 
     addFav.addEventListener('click', () => {
         if (!favorites.includes(cardIndex)) {
@@ -64,26 +67,26 @@ function updateFavoritesContainer() {
         createElement('h5', { textContent: data[ele].title }, cardInfo);
         const rateContainer = createElement('div', { class: 'rates-container' }, cardInfo);
         createRatingStars(data[ele].rating, rateContainer);
-        const deleteCardBtn = createElement('ion-icon', { class: 'delete-card-btn', name: 'trash-outline' }, cardInfo);
-        deleteCardBtn.addEventListener('click', () => {
-            const cardId = deleteCardBtn.parentNode.parentNode.id;
-            console.log('cardId: ', cardId);
-            const index = favorites.indexOf(cardId);
-            if (index !== -1) {
-                favorites.splice(index, 1);
-                updateFavoritesContainer();
-                saveFavorites()
-            }
-        })
+        // const deleteCardBtn = createElement('ion-icon', { class: 'delete-card-btn', name: 'trash-outline' }, cardInfo);
+        // deleteCardBtn.addEventListener('click', () => {
+        //     const cardId = deleteCardBtn.parentNode.parentNode.id;
+        //     console.log('cardId: ', cardId);
+        //     const index = favorites.indexOf(cardId);
+        //     if (index !== -1) {
+        //         favorites.splice(index, 1);
+        //         updateFavoritesContainer();
+        //         saveFavorites()
+        //     }
+        // })
     })
 }
 
-deleteBtn.addEventListener('click', () => {
-    favorites.length = 0;
-    updateFavoritesContainer();
-    localStorage.setItem('favorites', JSON.stringify(favorites));
+// deleteBtn.addEventListener('click', () => {
+//     favorites.length = 0;
+//     updateFavoritesContainer();
+//     localStorage.setItem('favorites', JSON.stringify(favorites));
 
-})
+// })
 
 updateFavoritesContainer();
 updateAddFavBtn();
