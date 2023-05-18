@@ -93,7 +93,7 @@ function createCards(topics) {
     const info = createElement('div', { class: 'info' }, card);
     const head = createElement('div', { class: 'head-title' }, info);
     createElement('p', { textContent: course.description }, head);
-    createElement('h5', { textContent: course.title }, head);
+    createElement('h3', { textContent: course.title }, head);
     const footer = createElement('div', { class: 'footer' }, info);
     const rate = createElement('div', { class: 'rate-container', }, footer);
     createRatingStars(course.rating, rate);
