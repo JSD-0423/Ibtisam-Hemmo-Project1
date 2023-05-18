@@ -133,5 +133,5 @@ body {
 footer {
   text-align: center;
   margin: 1rem 0;
-  background-color: var(--bg-default);
+  background-color: var(--bg-body);
 }

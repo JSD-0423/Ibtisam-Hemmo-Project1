@@ -44,6 +44,10 @@
     font-size: large;
   }
 
+  .fav-title {
+    font-size: small;
+  }
+
   .filter-container {
     border-top: 1px solid var(--lines-color);
     width: 100%;
@@ -52,6 +56,14 @@
 
   .margin-container {
     padding: 2rem;
+  }
+
+  .green-triangle{
+    border-top: 6vh solid var(--brand-secondary);
+  }
+
+  .blue-triangle{
+    height: 6vh;
   }
 }
 
