@@ -1,7 +1,7 @@
 import data from './courses.js';
 import { createElement, createRatingStars } from './common.js';
 
-const courses = document.querySelector('.courses');
+const cards = document.querySelector('.cards');
 const darkModeBtn = document.querySelector('.dark-mode');
 const modeIcon = document.getElementById('mode-icon');
 const modeText = document.getElementById('mode-text');
@@ -9,7 +9,7 @@ const favoritesBtn = document.querySelector('.favorites');
 const favPopUp = document.getElementById('popup-container');
 const favIcon = document.getElementById('fav-icon');
 const searchInput = document.getElementById('search-input');
-const searchedTitle = document.querySelector('.searched-title');
+const searchedTitle = document.querySelector('.subtitle');
 const filterSelectMenu = document.getElementById('filter-menu');
 const sortSelectMenu = document.getElementById('sort-menu');
 
@@ -72,30 +72,24 @@ function applyFiltersAndSort() {
     sortedTopics = filteredTopics.filter(topic => topic.rating < 50);
   }
   createCards(sortedTopics);
-  updateJustifyContent();
 }
 
 createCards(data);
 
-
-function updateJustifyContent() {
-  const cardCount = courses.childElementCount;
-  courses.classList.toggle('justify-flex-start', cardCount < 5);
-}
-
 function createCards(topics) {
-  courses.innerHTML = '';
+  cards.innerHTML = '';
   searchedTitle.textContent = `"${topics.length}" Web Topics Found`;
   topics.map((course, index) => {
-    const card = createElement('div', { class: 'course' }, courses);
+    const card = createElement('div', { class: 'card' }, cards);
     card.setAttribute('data-index', index);
-    createElement('img', { src: course.image }, card);
+    const imgContainer = createElement('div', { class: 'img-container' }, card)
+    createElement('img', { src: course.image }, imgContainer);
     const info = createElement('div', { class: 'info' }, card);
     const head = createElement('div', { class: 'head-title' }, info);
     createElement('p', { textContent: course.description }, head);
     createElement('h3', { textContent: course.title }, head);
     const footer = createElement('div', { class: 'footer' }, info);
-    const rate = createElement('div', { class: 'rate-container', }, footer);
+    const rate = createElement('div', { class: 'icons-container', }, footer);
     createRatingStars(course.rating, rate);
     createElement('div', { class: 'author-name', textContent: 'Author: ' + course.author }, footer);
 

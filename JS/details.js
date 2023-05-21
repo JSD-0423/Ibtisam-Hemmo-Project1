@@ -6,7 +6,7 @@ const cardIndex = urlParams.get('cardIndex');
 const cardDetails = data[cardIndex];
 const favorites = loadFavorites();
 const favoritesContainer = document.querySelector('.favorites-container');
-const deleteBtn = document.querySelector('.delete-btn');
+// const deleteBtn = document.querySelector('.delete-btn');
 
 const details = document.querySelector('.details');
 if (details) {
@@ -23,9 +23,10 @@ if (details) {
 
     createElement('img', { src: cardDetails.image, alt: cardDetails.title }, card);
     const courseInfo = createElement('div', { class: 'card-outside-details' }, card);
-    const statement = createElement('p', {}, courseInfo);
-    createElement('b', {textContent: cardDetails.title + ' by ' }, statement)
-    createElement('span', { class: 'author', textContent: cardDetails.author }, statement)
+    const statement = createElement('div', {}, courseInfo);
+    createElement('h3', { textContent: cardDetails.title }, statement)
+    createElement('span', { textContent: ' by ' }, statement)
+    createElement('span', { class: 'text-link', textContent: cardDetails.author }, statement)
     const outlinedCard = createElement('div', { class: 'outlined-card' }, courseInfo);
     createElement('p', { textContent: 'Interested about this topic?' }, outlinedCard);
     const addFav = createElement('button', { textContent: 'Add to Favorites', type: 'submit', class: 'card-button add-fav' }, outlinedCard);
