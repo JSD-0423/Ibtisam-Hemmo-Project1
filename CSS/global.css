@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@200;400;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@200;400;700;800&display=swap");
 
 :root {
   --brand-primary: #0768ac;
@@ -35,7 +35,6 @@ body {
 
 body {
   background-color: var(--bg-default);
-  height: 100%;
   display: flex;
   flex-direction: column;
 }
@@ -57,7 +56,8 @@ header {
 }
 
 .logo {
-  font-size: 1em;
+  font-size: 0.95em;
+  font-weight: 600;
   color: var(--brand-primary);
 }
 
@@ -69,7 +69,7 @@ header {
 
 .toggle-button {
   color: var(--body-text);
-  padding: 5px 13px;
+  padding: 4px 11px;
   display: flex;
   gap: 5px;
   background-color: transparent;
@@ -85,38 +85,41 @@ header {
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-bottom: 0.8em;
 }
 
 .blue-triangle {
+  z-index: 1;
   width: 100%;
-  height: 8vh;
+  height: 10vh;
   position: absolute;
   background: linear-gradient(
     45deg,
     var(--brand-primary),
-    rgb(5, 155, 145) 40%,
-    rgba(5, 105, 175, 0.5)
+    rgb(5, 155, 145) 61%,
+    rgb(5 105 175 / 2%)
   );
   clip-path: polygon(0% 0%, 100% 0%, 0% 100%);
 }
 
 .green-triangle {
-  border-top: 8vh solid var(--brand-secondary);
-  border-left: 98vw solid transparent;
+  width: 100%;
+  height: 10vh;
+  clip-path: polygon(100% 0, 100% 100%, 0 0);
+  background-color: var(--brand-secondary);
 }
 
 .welcoming-container {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  margin-left: 20px;
-  margin-bottom: 1rem;
+  margin-left: 2rem;
   color: var(--body-text);
+  transform: translateY(-10px);
+  line-height: 1.2;
 }
 
 .welcoming-container > h2 {
   color: var(--brand-secondary);
   font-size: larger;
+  font-weight: 800;
 }
 
 /* End Styling Header */
@@ -124,6 +127,7 @@ header {
 /* Start Styling Search Bar */
 
 .search-bar {
+  margin-bottom: 1rem;
   margin-top: 1rem;
   display: flex;
   flex-wrap: wrap;
@@ -136,23 +140,23 @@ header {
 }
 
 .search-input {
-  padding-left: 1rem;
   display: flex;
   align-items: center;
 }
 
 .search-icon {
   position: absolute;
-  margin-left: 1rem;
+  margin-left: 0.7rem;
 }
 
 .search-input > input {
   color: var(--body-text);
   background-color: var(--bg_default);
   border: 0px;
-  padding: 1rem;
   width: 100%;
   padding-left: 2.7rem;
+  font-size: 1rem;
+  height: 100%;
 }
 
 .filter-container {
@@ -163,14 +167,15 @@ header {
 .select-container {
   display: flex;
   height: -webkit-fill-available;
-  padding: 5px 15px;
+  padding: 5px 10px;
   border-left: 1px solid #938c8c63;
   flex-direction: column;
   justify-content: center;
 }
 
 .select-label {
-  margin-left: 4px;
+  margin-left: 3px;
+  font-size: 11px;
 }
 
 .filter-container select {
@@ -181,6 +186,7 @@ header {
   background: transparent;
   color: var(--body-text);
   width: 110px;
+  font-size: 14px;
 }
 /* End Styling Search bar */
 
@@ -264,7 +270,6 @@ header {
 
 footer {
   padding-top: 1rem;
-  background-color: var(--bg-body);
   padding-bottom: 0.5rem;
   color: var(--body-text);
   bottom: 0;
@@ -278,6 +283,7 @@ footer .colored-icon {
   color: var(--heart-color);
   width: 1.2em;
   height: 1.2em;
+  margin: 0 5px;
 }
 
 button:hover {

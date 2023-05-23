@@ -1,13 +1,13 @@
 @media screen and (max-width: 667px) {
-  .header-container {
-    margin: 0 0.7em;
-  }
-
   .welcoming-container,
   .search-bar,
   .cards-container,
   .container {
     margin: 0.5rem 1rem;
+  }
+
+  .header-container {
+    padding: 0.5rem 0;
   }
 
   .welcoming-container > h2 {
@@ -33,6 +33,30 @@
 }
 
 @media screen and (max-width: 520px) {
+  .welcoming-container > h2 {
+    margin-top: 5px;
+    font-size: large;
+  }
+
+  .welcoming-container > p {
+    max-width: 80vw;
+  }
+  
+  .select-container {
+    width: 50%;
+    padding: 3px 10px 6px 10px;
+    border-left: 0;
+    border-top: 1px solid #dddddd;
+  }
+
+  .filter {
+    border-left: 1px solid #938c8c63;
+  }
+
+  input#search-input {
+    padding: 10px 35px 4px 35px;
+  }
+
   .card {
     width: 100%;
   }
@@ -50,8 +74,8 @@
   }
 
   .filter-container {
-    border-top: 1px solid var(--lines-color);
     width: 100%;
+    padding-top: 2px;
     justify-content: space-between;
   }
 
@@ -60,7 +84,7 @@
   }
 
   .green-triangle {
-    border-top: 6vh solid var(--brand-secondary);
+    height: 6vh;
   }
 
   .blue-triangle {
@@ -74,7 +98,7 @@
   }
 
   .green-triangle {
-    border-top: 7vh solid var(--brand-secondary);
+    height: 7vh;
   }
 
   .blue-triangle {
@@ -98,6 +122,11 @@
   p.card-description {
     margin-top: 1rem;
     max-width: 77vw;
+  }
+
+  .subtitle {
+    margin-top: 15px;
+    font-size: 1.1rem;
   }
 }
 
