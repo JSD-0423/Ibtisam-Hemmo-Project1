@@ -13,6 +13,7 @@ main {
 
 .cards {
   display: grid;
+  align-items: stretch;
   grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr));
   grid-gap: 1.5rem;
 }
@@ -62,6 +63,16 @@ main {
 
 .info .head-title h3 {
   font-size: small;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  white-space: pre-wrap;
+  -webkit-line-clamp: 2;
+}
+
+.info .head-title h3::first-letter {
+  max-width: 2.5rem;
+  color: rebeccapurple;
 }
 
 .icons-container {

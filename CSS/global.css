@@ -39,6 +39,12 @@ body {
   flex-direction: column;
 }
 
+a {
+  display: grid;
+  text-decoration: none;
+  color: var(--body-text);
+}
+
 /* Start Styling Header */
 header {
   flex-shrink: 0;
@@ -130,7 +136,6 @@ header {
   margin-bottom: 1rem;
   margin-top: 1rem;
   display: flex;
-  flex-wrap: wrap;
   justify-content: space-between;
   align-items: stretch;
   gap: 0.5rem;
@@ -142,6 +147,7 @@ header {
 .search-input {
   display: flex;
   align-items: center;
+  width: -webkit-fill-available;
 }
 
 .search-icon {
@@ -174,7 +180,7 @@ header {
 }
 
 .select-label {
-  margin-left: 3px;
+  margin-left: 5px;
   font-size: 11px;
 }
 
@@ -185,7 +191,7 @@ header {
   flex-direction: column;
   background: transparent;
   color: var(--body-text);
-  width: 110px;
+  width: 135px;
   font-size: 14px;
 }
 /* End Styling Search bar */
