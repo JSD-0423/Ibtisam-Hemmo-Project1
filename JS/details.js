@@ -8,15 +8,15 @@ const favorites = loadFavorites();
 const favoritesContainer = document.querySelector('.favorites-container');
 // const deleteBtn = document.querySelector('.delete-btn');
 
-const details = document.querySelector('.details');
+const details = document.querySelector('.details-container');
 if (details) {
-    const textContainer = createElement('div', { class: 'text-container' }, details);
+    const textContainer = createElement('div', { class: 'text-container shared-width' }, details);
     const container1 = createElement('div', {}, textContainer);
     createElement('h2', { class: 'colored-title', textContent: cardDetails.description }, container1);
     createElement('h3', { class: 'course-title', textContent: cardDetails.title }, container1);
     const ratesContainer = createElement('div', { class: 'icons-container' }, container1);
     createRatingStars(cardDetails.rating, ratesContainer);
-    createElement('p', { class: 'weight-text', textContent: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Corporis, quos.Corrupti ut eius voluptatem voluptatum quibusdam incidunt dolorem optio eveniet, eos unde inventoresaepe praesentium culpa blanditiis necessitatibus explicabo molestias, impedit eaque esse odit!Asperiores.' }, textContainer);
+    createElement('p', { class: 'semi-bold', textContent: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Corporis, quos.Corrupti ut eius voluptatem voluptatum quibusdam incidunt dolorem optio eveniet, eos unde inventoresaepe praesentium culpa blanditiis necessitatibus explicabo molestias, impedit eaque esse odit!Asperiores.' }, textContainer);
 
     const courseContainer = createElement('div', { class: 'card', id: cardIndex }, details);
     const card = createElement('div', {}, courseContainer);
