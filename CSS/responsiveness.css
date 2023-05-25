@@ -22,10 +22,6 @@
     width: 100%;
   }
 
-  .filter-container select {
-    width: 100%;
-  }
-
   .details {
     justify-content: center;
     align-items: center;
@@ -41,7 +37,16 @@
   .welcoming-container > p {
     max-width: 80vw;
   }
-  
+
+  .search-bar {
+    flex-wrap: wrap;
+    gap: 0;
+  }
+
+  .filter-container select {
+    width: 100%;
+  }
+
   .select-container {
     width: 50%;
     padding: 3px 10px 6px 10px;
@@ -54,15 +59,7 @@
   }
 
   input#search-input {
-    padding: 10px 35px 4px 35px;
-  }
-
-  .card {
-    width: 100%;
-  }
-
-  .search-input {
-    width: 90%;
+    padding: 10px 35px;
   }
 
   .cards-container > h2 {
@@ -132,7 +129,8 @@
 
 @media only screen and (min-width: 1200px) {
   .card {
-    right: 15%;
+    right: 0;
+    top: 0;
   }
 }
 

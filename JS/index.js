@@ -80,7 +80,8 @@ function createCards(topics) {
   cards.innerHTML = '';
   searchedTitle.textContent = `"${topics.length}" Web Topics Found`;
   topics.map((course, index) => {
-    const card = createElement('div', { class: 'card' }, cards);
+    const anchor = createElement('a', { href: `details.html?cardIndex=${index}` }, cards);
+    const card = createElement('div', { class: 'card' }, anchor);
     card.setAttribute('data-index', index);
     const imgContainer = createElement('div', { class: 'img-container' }, card)
     createElement('img', { src: course.image }, imgContainer);
@@ -88,14 +89,10 @@ function createCards(topics) {
     const head = createElement('div', { class: 'head-title' }, info);
     createElement('p', { textContent: course.description }, head);
     createElement('h3', { textContent: course.title }, head);
-    const footer = createElement('div', { class: 'footer' }, info);
+    const footer = createElement('div', {}, info);
     const rate = createElement('div', { class: 'icons-container', }, footer);
     createRatingStars(course.rating, rate);
     createElement('div', { class: 'author-name', textContent: 'Author: ' + course.author }, footer);
-
-    card.addEventListener('click', () => {
-      window.location.href = `details.html?cardIndex=${index}`;
-    });
   })
 }
 
