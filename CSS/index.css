@@ -1,44 +1,157 @@
-main {
-  flex-grow: 1;
-  background-color: var(--bg-body);
+@import url("https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@200;400;700;800&display=swap");
+
+:root {
+  --brand-primary: #0768ac;
+  --brand-secondary: #03c180;
+  --bg-default: #ffffff;
+  --bg-body: #eff9ff;
+  --lines-color: #938c8c;
+  --body-text: #333333;
+  --heart-color: #dc143c;
+}
+
+:root.dark-mode {
+  --brand-primary: #0768ac;
+  --brand-secondary: #03c180;
+  --bg-default: #1a1a1a;
+  --bg-body: #282828;
+  --lines-color: #938c8c;
+  --body-text: #ededed;
+  --heart-color: #dc143c;
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: "Nunito Sans", "Times New Roman", sans-serif, Times, serif;
+}
+
+html,
+body {
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  background-color: var(--bg-default);
+  display: flex;
+  flex-direction: column;
+}
+
+a {
+  display: grid;
+  text-decoration: none;
   color: var(--body-text);
 }
 
-/* Start Styling Cards Section */
-
-.subtitle {
-  font-size: 1.3rem;
-  margin-bottom: 1.5rem;
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin-bottom: 0 !important;
 }
 
-.cards {
-  display: grid;
-  align-items: stretch;
-  grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr));
-  grid-gap: 1.5rem;
+/* Start Styling Header */
+.primary-color {
+  color: var(--brand-primary);
+}
+
+.secondary-color {
+  color: var(--brand-secondary);
+}
+
+.body-text-color {
+  color: var(--body-text);
+}
+
+.custom-bg-color {
+  background-color: var(--bg-body);
+}
+
+.custom-default-bg-color {
+  background-color: var(--bg-default);
+}
+
+.custom-primary-hover:hover {
+  background-color: var(--brand-primary) !important;
+  color: white;
+}
+
+.custom-row {
+  --bs-gutter-x: 0 !important;
+}
+
+.custom-triangle-container {
+  position: relative;
+  min-height: 60px;
+}
+
+.custom-translate-top {
+  transform: translateY(-20px);
+}
+
+.custom-triangle-container::before,
+.custom-triangle-container::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.custom-triangle-container::before {
+  left: 0;
+  background-color: var(--brand-secondary);
+  clip-path: polygon(100% 0, 100% 100%, 0 0);
+}
+
+.custom-triangle-container::after {
+  right: 0;
+  background: linear-gradient(
+    45deg,
+    var(--brand-primary),
+    rgb(5, 155, 145) 61%,
+    rgb(5 105 175 / 2%)
+  );
+  clip-path: polygon(0% 0%, 100% 0%, 0% 100%);
+}
+
+.t-custom {
+  top: 5rem;
+}
+
+.fs-custom {
+  font-size: 1.15rem;
+}
+
+.custom-shadow {
+  box-shadow: -3px 0px 10px -1px rgb(0 0 0 / 15%);
+}
+
+.custom-sm-fs {
+  font-size: 11px;
+}
+
+.custom-border-start {
+  border-left: 1px solid #938c8c63;
+}
+
+.custom-select {
+  outline: none;
+  border: none;
+  font-size: 14px;
 }
 
 .card {
-  background-color: var(--bg-default);
-  border-radius: 0.5em;
-  overflow: hidden;
   box-shadow: 0px 0px 9px -6px #9e9e9ee8;
 }
 
-.img-container {
-  width: 100%;
-  overflow: hidden;
-}
-
-.img-container img {
-  width: 100%;
-  height: 125px;
-  object-fit: cover;
+.card-img-top {
+  height: 150px;
   transition: transform 0.3s ease-in-out;
-}
-
-.card:hover {
-  cursor: pointer;
 }
 
 .card img:hover {
@@ -46,49 +159,170 @@ main {
   overflow: hidden;
 }
 
-.info {
-  padding: 0.5em 1em 1em;
-  display: flex;
-  flex-direction: column;
-  gap: 1.7rem;
-  background-color: var(--bg-default);
-}
-
-.info p {
+.card-body p {
   font-size: 13px;
-  overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
 
-.info .head-title h3 {
+.card-body h3 {
   font-size: small;
-  overflow: hidden;
   display: -webkit-box;
   -webkit-box-orient: vertical;
   white-space: pre-wrap;
   -webkit-line-clamp: 2;
 }
 
-.info .head-title h3::first-letter {
-  max-width: 2.5rem;
-  color: rebeccapurple;
-}
-
 .icons-container {
   color: #e59c17;
   margin-bottom: 0.5rem;
+  margin-top: 1.5rem;
 }
 
 .author-name {
   font-size: 12px;
   color: var(--lines-color);
 }
+/* Start Styling Favorites Popup */
+#popup-container {
+  position: fixed;
+  bottom: 0;
+  height: fit-content;
+  padding: 1.2rem;
+  background-color: var(--bg-default);
+  z-index: 999;
+  width: 100vw;
+  color: var(--body-text);
+  display: none;
+  overflow-y: scroll;
+}
 
-/* End Styling cards Section */
+.show {
+  display: block;
+}
 
-/* End Styling Main */
+.favorites-container {
+  margin-top: 1rem;
+  gap: 1rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: stretch;
+}
 
-footer {
-  background-color: var(--bg-body);
+.fav-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.delete-btn {
+  font-size: 1.7rem;
+  color: var(--brand-primary);
+  cursor: pointer;
+}
+
+.delete-btn:hover {
+  transition: transform 0.3s ease;
+  transform: scale(1.2);
+  color: #028d8d;
+}
+
+.fav-card {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--bg-default);
+  width: 150px;
+  border-radius: 0.3rem;
+  overflow: hidden;
+  box-shadow: 0px 0px 1px 1px #5e5a5a29;
+}
+
+.fav-img {
+  height: 70px;
+}
+
+.rates-container {
+  color: orange;
+}
+
+.card-info {
+  padding: 0.5rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.delete-card-btn {
+  align-self: end;
+  font-size: large;
+  color: var(--brand-primary);
+  cursor: pointer;
+}
+
+/* End Styling Favorites Popup */
+
+.custom-icon {
+  padding: 0;
+  width: 1.3rem;
+  height: 1.3rem;
+  color: var(--heart-color);
+}
+
+/* Responsive */
+@media screen and (max-width: 667px) {
+  .custom-translate-top {
+    transform: translateY(-10px);
+    padding: 0 1rem;
+  }
+
+  .custom-triangle-container::before,
+  .custom-triangle-container::after {
+    height: 80%;
+  }
+
+  .search-bar {
+    flex-direction: column;
+  }
+
+  .search-bar input {
+    border-bottom: 1px solid #938c8c63 !important;
+    padding: 0.7rem;
+  }
+
+  .input-holder {
+    width: 100%;
+  }
+
+  .filter,
+  .sort {
+    width: 50%;
+  }
+
+  .sort {
+    border: none;
+  }
+}
+
+@media screen and (max-width: 667px) {
+  .details {
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+@media screen and (max-width: 520px) {
+  .fav-title {
+    font-size: small;
+  }
+}
+
+@media only screen and (max-width: 1215px) {
+  .text-container,
+  .list-items-container {
+    width: 100%;
+  }
+
+  .details {
+    flex-direction: column;
+  }
 }

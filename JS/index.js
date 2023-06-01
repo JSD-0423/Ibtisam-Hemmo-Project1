@@ -51,8 +51,11 @@ sortSelectMenu.addEventListener('change', () => {
 
 function applyFiltersAndSort() {
   let searchValue = searchInput.value.trim().toLowerCase();
+  console.log('searchValue: ', searchValue);
   const selectedFilter = filterSelectMenu.value;
+  console.log('selectedFilter: ', selectedFilter);
   const selectedSort = sortSelectMenu.value;
+  console.log('selectedSort: ', selectedSort);
 
   let filteredTopics = data;
 
@@ -80,15 +83,15 @@ function createCards(topics) {
   cards.innerHTML = '';
   searchedTitle.textContent = `"${topics.length}" Web Topics Found`;
   topics.map((course, index) => {
-    const anchor = createElement('a', { href: `details.html?cardIndex=${index}` }, cards);
-    const card = createElement('div', { class: 'card' }, anchor);
-    card.setAttribute('data-index', index);
-    const imgContainer = createElement('div', { class: 'img-container' }, card)
-    createElement('img', { src: course.image }, imgContainer);
-    const info = createElement('div', { class: 'info' }, card);
-    const head = createElement('div', { class: 'head-title' }, info);
-    createElement('p', { textContent: course.description }, head);
-    createElement('h3', { textContent: course.title }, head);
+    const card = createElement('div', { class: 'col' }, cards);
+    const anchor = createElement('a', { href: `details.html?cardIndex=${index}`, class: 'card custom-default-bg-color overflow-hidden border-0' }, card);
+    anchor.setAttribute('data-index', index);
+    const imgContainer = createElement('div', { class: 'overflow-hidden bg-white' }, anchor)
+    createElement('img', { src: course.image, class: 'card-img-top object-fit-cover' }, imgContainer);
+    const info = createElement('div', { class: 'card-body' }, anchor);
+    const head = createElement('div', { class: 'card-content body-text-color' }, info);
+    createElement('p', { textContent: course.description, class:'overflow-hidden mb-1' }, head);
+    createElement('h3', { textContent: course.title, class:'overflow-hidden fw-bold' }, head);
     const footer = createElement('div', {}, info);
     const rate = createElement('div', { class: 'icons-container', }, footer);
     createRatingStars(course.rating, rate);

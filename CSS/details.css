@@ -1,91 +1,33 @@
-.logo-link {
-  text-decoration: none;
-  color: var(--brand-primary);
-  font-size: 0.5rem;
-}
-
 .margin-container {
   padding: 1rem 20%;
 }
 
-.details-container {
-  position: relative;
-}
-
-.details {
+.bg-grey {
   background-color: #333;
-  display: flex;
-  flex-direction: row;
 }
 
-.shared-width {
+.w-60 {
   width: 60%;
-}
-
-.text-container {
-  color: white;
-  display: flex;
-  flex-direction: column;
-  gap: 1.5rem;
-  padding: 15px 0;
-}
-
-.semi-bold {
-  font-weight: 400;
-}
-
-.icons-container {
-  color: orange;
-}
-
-.colored-title {
-  color: var(--brand-secondary);
-  font-weight: 600;
-  font-size: large;
-}
-
-.course-title {
-  font-size: x-large;
 }
 
 .card {
   width: 18rem;
-  margin-top: 1rem;
-  border: 2px solid #fff;
-  background-color: #fff;
-  position: absolute;
+  border: 2px solid #fff !important;
+  border-radius: 0 !important;
   box-shadow: 0px 3px 6px 0px rgb(0 0 0 / 10%), 0px 1px 3px 0px rgb(0 0 0 / 8%);
 }
 
 .card img {
-  width: 100%;
-  object-fit: cover;
   height: 180px;
 }
 
-.card-outside-details {
-  padding: 1rem;
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-}
-
-.card-outside-details div h3 {
-  font-size: medium;
-  display: inline;
-}
-
-.card-outside-details .text-link {
+.text-link {
   color: blue;
-  text-decoration: underline;
-  cursor: pointer;
 }
 
 .outlined-card {
   padding: 15px;
   border: 1px solid #ddd;
-  display: flex;
-  flex-direction: column;
   gap: 10px;
 }
 
@@ -139,6 +81,10 @@
   padding: 0 1rem 1rem;
 }
 
+ul{
+  padding: 0 !important;
+}
+
 .list-items-container .item {
   display: flex;
   gap: 1rem;
@@ -150,6 +96,7 @@
 .check-icon {
   color: var(--brand-secondary);
   font-size: 1.5rem;
+  flex-shrink: 0;
 }
 
 .footer {
@@ -158,4 +105,39 @@
   background-color: var(--bg-body);
   flex-shrink: 0;
   align-items: flex-start;
+}
+
+@media screen and (max-width: 667px) {
+  .details {
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+@media screen and (max-width: 520px) {
+  .margin-container {
+    padding: 2rem;
+  }
+}
+
+@media only screen and (min-width: 1200px) {
+  .card {
+    right: 0;
+  }
+}
+
+@media only screen and (max-width: 1215px) {
+  .text-container,
+  .list-items-container {
+    width: 100%;
+  }
+
+  .details {
+    flex-direction: column;
+  }
+
+  .card {
+    position: static !important;
+    float: none !important;
+  }
 }
