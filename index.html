@@ -22,55 +22,49 @@
 
 <body>
     <header>
-        <div class="container-fluid">
-            <div class="row d-flex align-items-center py-3 mx-3">
-                <div class="col-6 text-start">
-                    <h1 class="fs-6 fw-semibold primary-color">Web Topics</h1>
-                </div>
-                <div class="col-6 text-end">
-                    <div class="btn-group">
-                        <button
-                            class="btn px-2 py-1 me-2 border-secondary-subtle rounded-1 d-flex align-items-center bg-transparent btn-light custom-primary-hover body-text-color dark-mode"
-                            aria-label="Dark Mode Button" type="button">
-                            <ion-icon class="me-sm-2 " id="mode-icon" name="moon-outline" alt="Dark Mode Icon"
-                                aria-hidden="true">
-                            </ion-icon>
-                            <span id="mode-text" class="d-sm-inline-block d-none">Dark Mode</span>
-                        </button>
-                        <button
-                            class="btn px-2 py-1 border-secondary-subtle rounded-1 d-flex align-items-center bg-transparent btn-light custom-primary-hover body-text-color favorites"
-                            aria-label="Favorites Button" type="button">
-                            <ion-icon class="me-sm-2" id="fav-icon" name="heart-outline" alt="Favorites Icon">
-                            </ion-icon>
-                            <span class="d-sm-inline-block d-none">Favorites</span>
-                        </button>
-                    </div>
-                </div>
+        <div class="container-fluid d-flex align-items-center justify-content-between py-3">
+            <h1 class="fs-6 primary-color">Web Topics</h1>
+            <div class="btn-group">
+                <button
+                    class="btn px-2 py-1 me-2 border-secondary-subtle rounded-1 d-flex align-items-center bg-transparent custom-primary-hover body-text-color dark-mode"
+                    aria-label="Dark Mode Button" type="button">
+                    <ion-icon class="me-sm-2 " id="mode-icon" name="moon-outline" alt="Dark Mode Icon"
+                        aria-hidden="true">
+                    </ion-icon>
+                    <span id="mode-text" class="d-sm-inline-block d-none">Dark Mode</span>
+                </button>
+                <button
+                    class="btn px-2 py-1 border-secondary-subtle rounded-1 d-flex align-items-center bg-transparent custom-primary-hover body-text-color favorites"
+                    aria-label="Favorites Button" type="button">
+                    <ion-icon class="me-sm-2" id="fav-icon" name="heart-outline" alt="Favorites Icon">
+                    </ion-icon>
+                    <span class="d-sm-inline-block d-none">Favorites</span>
+                </button>
             </div>
         </div>
-        <div class="row custom-row w-100 d-flex flex-column align-items-center mb-2">
-            <div class="custom-triangle-container"></div>
+        <div>
+            <div class="custom-triangle-container position-relative"></div>
         </div>
-        <div class="custom-row d-flex justify-content-center mx-3">
-            <div class="position-relative custom-translate-top">
-                <h2 class="secondary-color fw-bold fs-custom">Welcome to our website!</h2>
-                <p class="mb-0 body-text-color">We have a new design that is fresh, modern, and easy to use.</p>
+        <div class="container-fluid d-flex justify-content-center">
+            <div class="custom-translate-top lh-1">
+                <h2 class="secondary-color fw-bold fs-5">Welcome to our website!</h2>
+                <p class="mb-0 mb-3 body-text-color">We have a new design that is fresh, modern, and easy to use.</p>
             </div>
         </div>
     </header>
 
-    <main class="container-fluid custom-bg-color">
+    <main class="container-fluid custom-bg-color flex-grow-1">
         <section role="search"
-            class="col d-flex rounded custom-default-bg-color mx-4 my-3 custom-shadow overflow-hidden search-bar">
-            <div class="col-8 d-flex align-items-center input-holder">
-                <ion-icon class="position-absolute ms-3 body-text-color " name="search-outline" alt="Search Icon"
-                    aria-hidden="true">
-                </ion-icon>
-                <input type="text" class="custom-default-bg-color body-text-color h-100 w-100 border-0 fs-6 ps-5"
+            class="col-md custom-default-bg-color custom-shadow d-flex flex-md-row flex-sm-column my-3 overflow-hidden rounded search-bar">
+            <div class="align-items-center col-12 col-md-8 d-flex py-md-0 py-sm-3 custom-border-bottom">
+                <ion-icon class="position-absolute ms-3 body-text-color" name="search-outline" alt="Search Icon"
+                    aria-hidden="true"></ion-icon>
+                <input type="text" class="body-text-color border-0 custom-default-bg-color fs-6 h-100 ps-5 w-100"
                     placeholder="Search the website..." aria-label="Search input" id="search-input" />
             </div>
-            <div class="col-4 d-flex fs-6 w-100">
-                <div class=" col-2 d-flex flex-column justify-content-center h-auto custom-border-start px-2 py-1 sort">
+            <div class="col-12 col-md-4 d-flex fs-6">
+                <div
+                    class="col-6 col-md-* custom-border-start d-flex flex-column h-auto justify-content-center px-2 py-2 sort">
                     <label for="sort-menu" class="ms-2 custom-sm-fs body-text-color">Sort by:</label>
                     <select title="sort" id="sort-menu"
                         class="custom-select border-none bg-transparent body-text-color">
@@ -80,7 +74,7 @@
                     </select>
                 </div>
                 <div
-                    class="col-2 d-flex flex-column justify-content-center h-auto custom-border-start px-2 py-1 filter">
+                    class="col-6 col-md-* col-md-2 custom-border-start d-flex filter flex-column h-auto justify-content-center px-2 py-2 w-50">
                     <label for="filter-menu" class="ms-1 custom-sm-fs body-text-color">Filter by:</label>
                     <select title="filter" id="filter-menu"
                         class="custom-select border-none bg-transparent body-text-color">
@@ -92,8 +86,8 @@
             </div>
         </section>
 
-        <section class="col mx-4" role="main" aria-label="Courses">
-            <h2 class="subtitle fs-5 mb-2 fw-bold"></h2>
+        <section role="main" aria-label="Courses">
+            <h2 class="subtitle fs-5 mb-4 fw-bold"></h2>
             <div
                 class="cards row d-flex g-4 row-cols-xxl-6 row-cols-xl-5 row-cols-lg-4 row-cols-1 row-cols-sm-2 row-cols-md-3 ">
             </div>
@@ -101,16 +95,17 @@
     </main>
 
     <footer
-        class="row custom-row bottom-0 custom-bg-color body-text-color d-flex justify-content-center align-items-center pt-3 pb-3 flex-shrink-0">
+        class="align-items-center body-text-color custom-bg-color d-flex flex-shrink-0 justify-content-center pb-3 pt-3">
         Developed with
         <ion-icon name="heart" class="custom-icon mx-2"></ion-icon>
         &copy 2023
     </footer>
-    <section id="popup-container" role="complementary" aria-labelledby="popup-favorites">
-        <div class="fav-title">
-            <h2 class="fs-3 fw-bold">My Favorite Topics</h2>
-        </div>
-        <div class="favorites-container"></div>
+
+    <section id="popup-container"
+        class="body-text-color bottom-0 container-fluid custom-default-bg-color position-fixed py-3 w-100 shadow-lg"
+        role="complementary" aria-labelledby="popup-favorites">
+        <h2 class="fs-5 fw-bold">My Favorite Topics</h2>
+        <div class="d-flex favorites-container gap-3 mt-3 overflow-auto"></div>
     </section>
 
 

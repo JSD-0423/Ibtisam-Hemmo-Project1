@@ -50,11 +50,17 @@ h2,
 h3,
 h4,
 h5,
-h6 {
+h6,
+p {
   margin-bottom: 0 !important;
 }
 
-/* Start Styling Header */
+.container-fluid {
+  padding-right: 3rem !important;
+  padding-left: 3rem !important;
+}
+
+/* ============= Start Styling index page =============*/
 .primary-color {
   color: var(--brand-primary);
 }
@@ -65,6 +71,14 @@ h6 {
 
 .body-text-color {
   color: var(--body-text);
+}
+
+.text-orange {
+  color: #e59c17;
+}
+
+.text-lines-color {
+  color: var(--lines-color);
 }
 
 .custom-bg-color {
@@ -80,17 +94,12 @@ h6 {
   color: white;
 }
 
-.custom-row {
-  --bs-gutter-x: 0 !important;
+.custom-translate-top {
+  transform: translateY(-8px);
 }
 
 .custom-triangle-container {
-  position: relative;
   min-height: 60px;
-}
-
-.custom-translate-top {
-  transform: translateY(-20px);
 }
 
 .custom-triangle-container::before,
@@ -119,20 +128,16 @@ h6 {
   clip-path: polygon(0% 0%, 100% 0%, 0% 100%);
 }
 
-.t-custom {
-  top: 5rem;
-}
-
 .fs-custom {
-  font-size: 1.15rem;
-}
-
-.custom-shadow {
-  box-shadow: -3px 0px 10px -1px rgb(0 0 0 / 15%);
+  font-size: 14px;
 }
 
 .custom-sm-fs {
   font-size: 11px;
+}
+
+.custom-shadow {
+  box-shadow: -3px 0px 10px -1px rgb(0 0 0 / 15%);
 }
 
 .custom-border-start {
@@ -145,12 +150,12 @@ h6 {
   font-size: 14px;
 }
 
-.card {
-  box-shadow: 0px 0px 9px -6px #9e9e9ee8;
+.cards .card {
+  box-shadow: -1px 1px 11px -1px rgb(0 0 0 / 15%);
 }
 
-.card-img-top {
-  height: 150px;
+.cards .card-img-top {
+  height: 135px;
   transition: transform 0.3s ease-in-out;
 }
 
@@ -159,120 +164,64 @@ h6 {
   overflow: hidden;
 }
 
-.card-body p {
+.cards .card-body p {
   font-size: 13px;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
 
-.card-body h3 {
+.cards .card-body h3 {
+  height: 30px;
   font-size: small;
   display: -webkit-box;
   -webkit-box-orient: vertical;
   white-space: pre-wrap;
+  overflow: hidden;
   -webkit-line-clamp: 2;
 }
 
-.icons-container {
-  color: #e59c17;
-  margin-bottom: 0.5rem;
-  margin-top: 1.5rem;
-}
-
-.author-name {
-  font-size: 12px;
-  color: var(--lines-color);
-}
-/* Start Styling Favorites Popup */
-#popup-container {
-  position: fixed;
-  bottom: 0;
-  height: fit-content;
-  padding: 1.2rem;
-  background-color: var(--bg-default);
-  z-index: 999;
-  width: 100vw;
-  color: var(--body-text);
-  display: none;
-  overflow-y: scroll;
-}
-
-.show {
-  display: block;
-}
-
-.favorites-container {
-  margin-top: 1rem;
-  gap: 1rem;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: flex-start;
-  align-items: stretch;
-}
-
-.fav-title {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.delete-btn {
-  font-size: 1.7rem;
-  color: var(--brand-primary);
-  cursor: pointer;
-}
-
-.delete-btn:hover {
-  transition: transform 0.3s ease;
-  transform: scale(1.2);
-  color: #028d8d;
-}
-
-.fav-card {
-  display: flex;
-  flex-direction: column;
-  background-color: var(--bg-default);
-  width: 150px;
-  border-radius: 0.3rem;
-  overflow: hidden;
-  box-shadow: 0px 0px 1px 1px #5e5a5a29;
-}
-
-.fav-img {
-  height: 70px;
-}
-
-.rates-container {
-  color: orange;
-}
-
-.card-info {
-  padding: 0.5rem;
-  display: flex;
-  flex-direction: column;
-}
-
-.delete-card-btn {
-  align-self: end;
-  font-size: large;
-  color: var(--brand-primary);
-  cursor: pointer;
-}
-
-/* End Styling Favorites Popup */
-
-.custom-icon {
+footer .custom-icon {
   padding: 0;
   width: 1.3rem;
   height: 1.3rem;
   color: var(--heart-color);
 }
 
-/* Responsive */
-@media screen and (max-width: 667px) {
+/* ============= End Styling index page =============*/
+
+/* ============= Start Styling Favorites Popup ============= */
+#popup-container {
+  display: none;
+}
+
+.show {
+  display: block;
+}
+
+.card-w {
+  width: 120px;
+}
+
+.fav-card h5 {
+  font-size: 0.9rem !important;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.fav-img {
+  height: 70px;
+}
+
+/* ============= End Styling Favorites Popup ============= */
+
+@media screen and (max-width: 767px) {
+  .container-fluid {
+    padding-right: 2rem !important;
+    padding-left: 2rem !important;
+  }
+
   .custom-translate-top {
     transform: translateY(-10px);
-    padding: 0 1rem;
   }
 
   .custom-triangle-container::before,
@@ -280,22 +229,8 @@ h6 {
     height: 80%;
   }
 
-  .search-bar {
-    flex-direction: column;
-  }
-
-  .search-bar input {
+  .custom-border-bottom {
     border-bottom: 1px solid #938c8c63 !important;
-    padding: 0.7rem;
-  }
-
-  .input-holder {
-    width: 100%;
-  }
-
-  .filter,
-  .sort {
-    width: 50%;
   }
 
   .sort {
@@ -303,16 +238,98 @@ h6 {
   }
 }
 
-@media screen and (max-width: 667px) {
+@media screen and (max-width: 576px) {
+  .search-bar {
+    flex-direction: column;
+  }
+
+  .search-bar input {
+    padding: 0.7rem;
+  }
+
+  .custom-border-bottom {
+    border-bottom: 1px solid #938c8c63 !important;
+  }
+
+  .container-fluid {
+    padding-right: 1rem !important;
+    padding-left: 1rem !important;
+  }
+}
+
+/* ============= Start Styling Details Page ============= */
+.px-custom {
+  padding-right: 12rem !important;
+  padding-left: 12rem !important;
+}
+
+.bg-grey {
+  background-color: #333;
+}
+
+.w-60 {
+  width: 60%;
+}
+
+.details-container .card {
+  width: 18rem;
+  top: 1.4rem;
+}
+
+.details-container .card img {
+  height: 180px;
+}
+
+.text-link {
+  color: blue;
+}
+
+.details-container .card .card-button {
+  background-color: var(--brand-secondary);
+  outline: none;
+}
+
+.add-fav:not(:disabled):hover {
+  transition: transform 0.3s ease;
+  transform: scale(1.03);
+  background-color: #028d5d;
+}
+
+.add-fav[disabled] {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.list-items-container {
+  border: 1px solid #938c8c30;
+}
+
+.item {
+  border-top: 1px solid #938c8c38;
+}
+
+@media screen and (max-width: 900px) {
   .details {
     justify-content: center;
     align-items: center;
   }
+
+  .px-custom {
+    padding-right: 2rem !important;
+    padding-left: 2rem !important;
+  }
 }
 
-@media screen and (max-width: 520px) {
-  .fav-title {
-    font-size: small;
+@media screen and (min-width: 900px) and (max-width: 1200px) {
+  .px-custom {
+    padding-right: 8rem !important;
+    padding-left: 5rem !important;
+  }
+}
+
+@media only screen and (min-width: 1200px) {
+  .card {
+    right: 0;
   }
 }
 
@@ -325,4 +342,12 @@ h6 {
   .details {
     flex-direction: column;
   }
+
+  .card {
+    position: static !important;
+    float: none !important;
+    margin-top: 1rem;
+  }
 }
+
+/* ============= End Styling Details Page ============= */

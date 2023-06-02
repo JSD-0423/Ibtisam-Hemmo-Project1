@@ -13,98 +13,107 @@
         integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
     <meta property="og:url" content="https://jsd-0423.github.io/Ibtisam-Hemmo-Project1/">
     <link rel="stylesheet" href="CSS/index.css">
-    <link rel="stylesheet" href="CSS/details.css">
     <link rel="shortcut icon" href="assets/icon1.png" type="image/x-icon" alt="Web Topics Icon">
     <title>Web Topics | Details Page</title>
 </head>
 
 <body>
     <header>
-        <div class="container-fluid">
-            <div class="row d-flex align-items-center py-3 mx-3">
-                <div class="col-6 text-start">
-                    <h1 class="fs-6 fw-semibold">
-                        <a href="index.html" class="primary-color">Web Topics</a>
-                    </h1>
-                </div>
-                <div class="col-6 text-end">
-                    <div class="btn-group">
-                        <button
-                            class="btn px-2 py-1 me-2 border-secondary-subtle rounded-1 d-flex align-items-center bg-transparent btn-light custom-primary-hover body-text-color dark-mode"
-                            aria-label="Dark Mode Button" type="button">
-                            <ion-icon class="me-sm-2 " id="mode-icon" name="moon-outline" alt="Dark Mode Icon"
-                                aria-hidden="true">
-                            </ion-icon>
-                            <span id="mode-text" class="d-sm-inline-block d-none">Dark Mode</span>
-                        </button>
-                        <button
-                            class="btn px-2 py-1 border-secondary-subtle rounded-1 d-flex align-items-center bg-transparent btn-light custom-primary-hover body-text-color favorites"
-                            aria-label="Favorites Button" type="button">
-                            <ion-icon class="me-sm-2" id="fav-icon" name="heart-outline" alt="Favorites Icon">
-                            </ion-icon>
-                            <span class="d-sm-inline-block d-none">Favorites</span>
-                        </button>
-                    </div>
-                </div>
+        <div class="container-fluid d-flex align-items-center justify-content-between py-3">
+            <h1>
+                <a href="index.html" class="fs-6 primary-color">
+                    Web Topics
+                </a>
+            </h1>
+            <div class="btn-group">
+                <button
+                    class="btn px-2 py-1 me-2 border-secondary-subtle rounded-1 d-flex align-items-center bg-transparent custom-primary-hover body-text-color dark-mode"
+                    aria-label="Dark Mode Button" type="button">
+                    <ion-icon class="me-sm-2 " id="mode-icon" name="moon-outline" alt="Dark Mode Icon"
+                        aria-hidden="true">
+                    </ion-icon>
+                    <span id="mode-text" class="d-sm-inline-block d-none">Dark Mode</span>
+                </button>
+                <button
+                    class="btn px-2 py-1 border-secondary-subtle rounded-1 d-flex align-items-center bg-transparent custom-primary-hover body-text-color favorites"
+                    aria-label="Favorites Button" type="button">
+                    <ion-icon class="me-sm-2" id="fav-icon" name="heart-outline" alt="Favorites Icon">
+                    </ion-icon>
+                    <span class="d-sm-inline-block d-none">Favorites</span>
+                </button>
             </div>
         </div>
-        <div class="row custom-row w-100 d-flex flex-column align-items-center mb-2">
-            <div class="custom-triangle-container"></div>
+        <div>
+            <div class="custom-triangle-container position-relative"></div>
         </div>
-        <div class="custom-row d-flex justify-content-center mx-3">
-            <div class="position-relative custom-translate-top">
-                <h2 class="secondary-color fw-bold fs-custom">Welcome to our website!</h2>
-                <p class="mb-0 body-text-color">We have a new design that is fresh, modern, and easy to use.</p>
+        <div class="container-fluid d-flex justify-content-center">
+            <div class="custom-translate-top lh-1">
+                <h2 class="secondary-color fw-bold fs-5">Welcome to our website!</h2>
+                <p class="mb-0 mb-3 body-text-color">We have a new design that is fresh, modern, and easy to use.</p>
             </div>
         </div>
     </header>
 
     <main>
-        <section class="d-flex bg-grey margin-container">
-            <div class="position-relative details-container"></div>
+        <section class="bg-grey container-fluid px-custom">
+            <div class="details-container position-relative py-3"></div>
         </section>
-        <section class="margin-container lists h-100">
-            <div class="list-items-container w-60">
-                <h1 class="fs-2 fw-bold">HTML Sub Topics</h1>
+        <section class="container-fluid custom-bg-color h-100 px-custom py-4">
+            <div class="body-text-color custom-default-bg-color list-items-container rounded-1 w-60">
+                <h1 class="fs-4 fw-bold px-4 py-3">HTML Sub Topics</h1>
                 <ul>
-                    <li class="item">
-                        <ion-icon name="checkmark-circle-outline" class="check-icon" role="img" class="md hydrated">
+                    <li class="align-items-center d-flex gap-3 item px-4 py-3">
+                        <ion-icon name="checkmark-circle-outline"
+                            class="flex-shrink-0 fs-4 hydrated md secondary-color" role="img"
+                            class="md hydrated">
                         </ion-icon>
                         HTML syntax
                         and structure
                     </li>
-                    <li class="item">
-                        <ion-icon name="checkmark-circle-outline" class="check-icon" role="img" class="md hydrated">
+                    <li class="align-items-center d-flex gap-3 item px-4 py-3">
+                        <ion-icon name="checkmark-circle-outline"
+                            class="flex-shrink-0 fs-4 hydrated md secondary-color" role="img"
+                            class="md hydrated">
                         </ion-icon>
                         HTML syntax
                         and structure
                     </li>
-                    <li class="item">
-                        <ion-icon name="checkmark-circle-outline" class="check-icon" role="img" class="md hydrated">
+                    <li class="align-items-center d-flex gap-3 item px-4 py-3">
+                        <ion-icon name="checkmark-circle-outline"
+                            class="flex-shrink-0 fs-4 hydrated md secondary-color" role="img"
+                            class="md hydrated">
                         </ion-icon>
                         HTML syntax
                         and structure
                     </li>
-                    <li class="item">
-                        <ion-icon name="checkmark-circle-outline" class="check-icon" role="img" class="md hydrated">
+                    <li class="align-items-center d-flex gap-3 item px-4 py-3">
+                        <ion-icon name="checkmark-circle-outline"
+                            class="flex-shrink-0 fs-4 hydrated md secondary-color" role="img"
+                            class="md hydrated">
                         </ion-icon>
                         HTML syntax
                         and structure
                     </li>
-                    <li class="item">
-                        <ion-icon name="checkmark-circle-outline" class="check-icon" role="img" class="md hydrated">
+                    <li class="align-items-center d-flex gap-3 item px-4 py-3">
+                        <ion-icon name="checkmark-circle-outline"
+                            class="flex-shrink-0 fs-4 hydrated md secondary-color" role="img"
+                            class="md hydrated">
                         </ion-icon>
                         HTML syntax
                         and structure
                     </li>
-                    <li class="item">
-                        <ion-icon name="checkmark-circle-outline" class="check-icon" role="img" class="md hydrated">
+                    <li class="align-items-center d-flex gap-3 item px-4 py-3">
+                        <ion-icon name="checkmark-circle-outline"
+                            class="flex-shrink-0 fs-4 hydrated md secondary-color" role="img"
+                            class="md hydrated">
                         </ion-icon>
                         HTML syntax
                         and structure
                     </li>
-                    <li class="item">
-                        <ion-icon name="checkmark-circle-outline" class="check-icon" role="img" class="md hydrated">
+                    <li class="align-items-center d-flex gap-3 item px-4 py-3">
+                        <ion-icon name="checkmark-circle-outline"
+                            class="flex-shrink-0 fs-4 hydrated md secondary-color" role="img"
+                            class="md hydrated">
                         </ion-icon>
                         HTML syntax
                         and structure
@@ -114,17 +123,16 @@
         </section>
     </main>
     <footer
-        class="row custom-row bottom-0 custom-bg-color body-text-color d-flex justify-content-center align-items-center pt-3 pb-3 flex-shrink-0">
+        class="align-items-center body-text-color custom-bg-color d-flex flex-shrink-0 justify-content-center pb-3 pt-3">
         Developed with
         <ion-icon name="heart" class="custom-icon mx-2"></ion-icon>
         &copy 2023
     </footer>
-    <section id="popup-container" role="complementary" aria-labelledby="popup-favorites">
-        <div class="fav-title">
-            <h2 class="fs-3 fw-bold">My Favorite Topics</h2>
-            <!-- <ion-icon name="trash-outline" class="delete-btn" alt="Delete icon"></ion-icon> -->
-        </div>
-        <div class="favorites-container"></div>
+    <section id="popup-container"
+        class="body-text-color bottom-0 container-fluid custom-default-bg-color position-fixed py-3 w-100 shadow-lg"
+        role="complementary" aria-labelledby="popup-favorites">
+        <h2 class="fs-5 fw-bold">My Favorite Topics</h2>
+        <div class="d-flex favorites-container gap-3 mt-3 overflow-auto"></div>
     </section>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"

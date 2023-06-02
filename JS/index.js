@@ -93,9 +93,9 @@ function createCards(topics) {
     createElement('p', { textContent: course.description, class:'overflow-hidden mb-1' }, head);
     createElement('h3', { textContent: course.title, class:'overflow-hidden fw-bold' }, head);
     const footer = createElement('div', {}, info);
-    const rate = createElement('div', { class: 'icons-container', }, footer);
+    const rate = createElement('div', { class: 'text-orange mb-2 mt-3', }, footer);
     createRatingStars(course.rating, rate);
-    createElement('div', { class: 'author-name', textContent: 'Author: ' + course.author }, footer);
+    createElement('div', { class: 'fs-custom text-lines-color', textContent: 'Author: ' + course.author }, footer);
   })
 }
 
