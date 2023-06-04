@@ -1,4 +1,4 @@
-import { createElement, createRatingStars } from './common.js';
+import { createElement, createRatingStars, debounce } from './common.js';
 
 const cards = document.querySelector('.cards');
 const themeBtn = document.querySelector('.dark-mode');
@@ -73,43 +73,42 @@ favoritesBtn.addEventListener('click', () => {
 })
 
 searchInput.addEventListener('input', () => {
-  applyFiltersAndSort();
+  setTimeout(() => applyFiltersAndSort(), 300);
 });
 
 filterSelectMenu.addEventListener('change', () => {
-  applyFiltersAndSort();
+  setTimeout(() => applyFiltersAndSort(), 300);
 });
 
 sortSelectMenu.addEventListener('change', () => {
-  applyFiltersAndSort();
+  setTimeout(() => applyFiltersAndSort(), 300);
 });
 
 function applyFiltersAndSort() {
+  let filteredTopics = courses;
   let searchValue = searchInput.value.trim().toLowerCase();
   const selectedFilter = filterSelectMenu.value;
   const selectedSort = sortSelectMenu.value;
 
-
-  if (selectedFilter !== 'Default') {
-    filteredTopics = courses.filter(data => data.type === selectedFilter);
-  }
-
   if (searchValue) {
-    filteredTopics = courses.filter(data => data.topic.toLowerCase().includes(searchValue));
+    filteredTopics = filteredTopics.filter(data => data.topic.toLowerCase().includes(searchValue));
   }
 
+  // if (selectedFilter !== 'Default') {
+  //   filteredTopics = courses.filter(data => data.type === selectedFilter);
+  // }
   let sortedTopics = filteredTopics;
 
-  if (selectedSort === 'Top-Rated') {
-    sortedTopics = filteredTopics.filter(topic => topic.rating >= 50);
-  } else if (selectedSort === 'Least-Rated') {
-    sortedTopics = filteredTopics.filter(topic => topic.rating < 50);
+  if (selectedSort === 'topic-title') {
+    sortedTopics.sort((a, b) => a.topic.localeCompare(b.topic));
+  } else if (selectedSort === 'author-name') {
+    sortedTopics.sort((a, b) => a.name.localeCompare(b.name));
   }
   createCards(sortedTopics);
 }
 
+
 function createCards(topics) {
-  courses = topics;
   cards.innerHTML = '';
   searchedTitle.textContent = `"${topics.length}" Web Topics Found`;
   topics.map((course) => {
