@@ -1,6 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@200;400;700;800&display=swap");
 
-:root {
+:root[data-theme="light"] {
   --brand-primary: #0768ac;
   --brand-secondary: #03c180;
   --bg-default: #ffffff;
@@ -10,7 +10,7 @@
   --heart-color: #dc143c;
 }
 
-:root.dark-mode {
+:root[data-theme="dark"] {
   --brand-primary: #0768ac;
   --brand-secondary: #03c180;
   --bg-default: #1a1a1a;
@@ -308,6 +308,11 @@ footer .custom-icon {
   border-top: 1px solid #938c8c38;
 }
 
+@media screen and (max-width: 700px) {
+  .list-items-container > div {
+    width: 100% !important;
+  }
+}
 @media screen and (max-width: 900px) {
   .details {
     justify-content: center;
