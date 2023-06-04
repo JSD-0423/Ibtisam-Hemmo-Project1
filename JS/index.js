@@ -13,11 +13,21 @@ const filterSelectMenu = document.getElementById('filter-menu');
 const sortSelectMenu = document.getElementById('sort-menu');
 const loadingSpinner = document.querySelector('.loading');
 const savedTheme = localStorage.getItem('theme') || 'light';
-
 let courses = [];
-setTheme(savedTheme);
 
+setTheme(savedTheme);
 loadingSpinner.style.display = 'block';
+
+favoritesBtn.addEventListener('click', () => toggleFavorites());
+searchInput.addEventListener('input', debounce(applyFiltersAndSort, 300));
+filterSelectMenu.addEventListener('change', debounce(applyFiltersAndSort, 300));
+sortSelectMenu.addEventListener('change', debounce(applyFiltersAndSort, 300));
+themeBtn.addEventListener('click', () => {
+  const currentTheme = localStorage.getItem('theme') || 'light';
+  const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+
+  setTheme(newTheme);
+})
 
 fetchData('https://tap-web-1.herokuapp.com/topics/list')
   .then(data => {
@@ -29,13 +39,6 @@ fetchData('https://tap-web-1.herokuapp.com/topics/list')
   }).finally(() => {
     loadingSpinner.style.display = 'none';
   });
-
-themeBtn.addEventListener('click', () => {
-  const currentTheme = localStorage.getItem('theme') || 'light';
-  const newTheme = currentTheme === 'light' ? 'dark' : 'light';
-
-  setTheme(newTheme);
-})
 
 
 function setTheme(theme) {
@@ -52,11 +55,6 @@ function setTheme(theme) {
 
   localStorage.setItem('theme', theme);
 }
-
-favoritesBtn.addEventListener('click', () => toggleFavorites());
-searchInput.addEventListener('input', debounce(applyFiltersAndSort, 300));
-filterSelectMenu.addEventListener('change', debounce(applyFiltersAndSort, 300));
-sortSelectMenu.addEventListener('change', debounce(applyFiltersAndSort, 300));
 
 function applyFiltersAndSort() {
   let filteredTopics = courses;
