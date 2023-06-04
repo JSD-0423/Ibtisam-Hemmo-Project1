@@ -14,7 +14,7 @@ const createElement = (type, options, parent) => {
 
 const createRatingStars = (rating, parent) => {
     const MAX_STARS = 5;
-    const ratingPercentage = (rating / 100) * MAX_STARS;
+    const ratingPercentage = (rating / 5) * MAX_STARS;
     const wholeStars = Math.floor(ratingPercentage);
     const halfStars = Math.ceil(ratingPercentage - wholeStars);
     const emptyStars = MAX_STARS - wholeStars - halfStars;
@@ -30,7 +30,26 @@ const createRatingStars = (rating, parent) => {
     }
 };
 
-export{
+async function fetchData(url) {
+  const res = await fetch(url);
+    if (!res.ok) {
+        throw new Error('Network response was not OK');
+    }
+    return await res.json();
+}
+
+function debounce(callback, delay) {
+    let timer;
+    return function () {
+      clearTimeout(timer);
+      timer = setTimeout(callback, delay);
+    };
+  }
+  
+
+export {
     createElement,
-    createRatingStars
+    createRatingStars,
+    fetchData,
+    debounce
 }
