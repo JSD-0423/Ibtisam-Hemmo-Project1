@@ -11,9 +11,12 @@ const searchInput = document.getElementById('search-input');
 const searchedTitle = document.querySelector('.subtitle');
 const filterSelectMenu = document.getElementById('filter-menu');
 const sortSelectMenu = document.getElementById('sort-menu');
+const loadingSpinner = document.querySelector('.loading');
 const savedTheme = localStorage.getItem('theme') || 'light';
 let courses = [];
 setTheme(savedTheme);
+
+loadingSpinner.style.display = 'block';
 
 fetch('https://tap-web-1.herokuapp.com/topics/list')
   .then(res => {
@@ -24,9 +27,14 @@ fetch('https://tap-web-1.herokuapp.com/topics/list')
   })
   .then(data => {
     courses = data;
-    createCards(data)
+    createCards(data);
+    loadingSpinner.style.display = 'none';
+
   })
-  .catch((err) => console.error(err));
+  .catch((err) => {
+    loadingSpinner.style.display = 'none';
+    console.error(err)
+  });
 
 themeBtn.addEventListener('click', () => {
   const currentTheme = localStorage.getItem('theme') || 'light';

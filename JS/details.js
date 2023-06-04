@@ -2,11 +2,13 @@ import { createElement, createRatingStars } from './common.js';
 
 const urlParams = new URLSearchParams(window.location.search);
 const cardIndex = urlParams.get('cardIndex');
+const loadingSpinner = document.querySelector('.loading');
 
 const details = document.querySelector('.details-container');
 const listContainer = document.querySelector('.list-items-container');
 const favoritesContainer = document.querySelector('.favorites-container');
 let cardDetails = [];
+loadingSpinner.style.display = 'block';
 
 fetch(`https://tap-web-1.herokuapp.com/topics/details/${cardIndex}`)
     .then((res) => res.json())
@@ -14,8 +16,13 @@ fetch(`https://tap-web-1.herokuapp.com/topics/details/${cardIndex}`)
         cardDetails = data;
         createDetailsCard(data)
         createList(data.subtopics)
+        loadingSpinner.style.display = 'none';
+
     })
-    .catch((err) => console.error(err))
+    .catch((err) => {
+        loadingSpinner.style.display = 'none';
+        console.error(err)
+    })
 
 function createDetailsCard(cardDetails) {
     const { category, topic, rating, description, image, name } = cardDetails;
