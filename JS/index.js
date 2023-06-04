@@ -1,4 +1,4 @@
-import { createElement, createRatingStars } from './common.js';
+import { createElement, createRatingStars, fetchData, debounce } from './common.js';
 
 const cards = document.querySelector('.cards');
 const themeBtn = document.querySelector('.dark-mode');
@@ -19,23 +19,15 @@ setTheme(savedTheme);
 
 loadingSpinner.style.display = 'block';
 
-fetch('https://tap-web-1.herokuapp.com/topics/list')
-  .then(res => {
-    if (!res.ok) {
-      throw new Error('Network response was not OK');
-    }
-    return res.json();
-  })
+fetchData('https://tap-web-1.herokuapp.com/topics/list')
   .then(data => {
     courses = data;
     createCards(data);
-    loadingSpinner.style.display = 'none';
-
   })
-  .catch((err) => {
-    loadingSpinner.style.display = 'none';
+  .catch(() => {
     searchedTitle.textContent = 'Something went wrong. Web topics failed to load.';
-    console.error(err)
+  }).finally(() => {
+    loadingSpinner.style.display = 'none';
   });
 
 themeBtn.addEventListener('click', () => {
@@ -61,7 +53,36 @@ function setTheme(theme) {
   localStorage.setItem('theme', theme);
 }
 
-favoritesBtn.addEventListener('click', () => {
+favoritesBtn.addEventListener('click', () => toggleFavorites());
+searchInput.addEventListener('input', debounce(applyFiltersAndSort, 300));
+filterSelectMenu.addEventListener('change', debounce(applyFiltersAndSort, 300));
+sortSelectMenu.addEventListener('change', debounce(applyFiltersAndSort, 300));
+
+function applyFiltersAndSort() {
+  let filteredTopics = courses;
+  let searchValue = searchInput.value.trim().toLowerCase();
+  if (searchValue) {
+    filteredTopics = filterTopicsBySearch(filteredTopics, searchValue);
+  }
+  let sortedTopics = filteredTopics;
+  sortedTopics = sortTopics(filteredTopics, sortSelectMenu.value);
+  createCards(sortedTopics);
+}
+
+function filterTopicsBySearch(topics, searchValue) {
+  return topics.filter(data => data.topic.toLowerCase().includes(searchValue));
+}
+
+function sortTopics(topics, Option) {
+  if (Option === 'topic-title') {
+    return topics.sort((a, b) => a.topic.localeCompare(b.topic));
+  } else if (Option === 'author-name') {
+    return topics.sort((a, b) => a.name.localeCompare(b.name));
+  }
+  return topics;
+}
+
+function toggleFavorites() {
   if (favPopUp.style.display === 'block') {
     favPopUp.style.display = 'none';
     favIcon.setAttribute('name', 'heart-outline');
@@ -71,43 +92,7 @@ favoritesBtn.addEventListener('click', () => {
     favIcon.setAttribute('name', 'heart');
     favIcon.style.color = 'red';
   }
-})
-
-searchInput.addEventListener('input', () => {
-  setTimeout(() => applyFiltersAndSort(), 300);
-});
-
-filterSelectMenu.addEventListener('change', () => {
-  setTimeout(() => applyFiltersAndSort(), 300);
-});
-
-sortSelectMenu.addEventListener('change', () => {
-  setTimeout(() => applyFiltersAndSort(), 300);
-});
-
-function applyFiltersAndSort() {
-  let filteredTopics = courses;
-  let searchValue = searchInput.value.trim().toLowerCase();
-  const selectedFilter = filterSelectMenu.value;
-  const selectedSort = sortSelectMenu.value;
-
-  if (searchValue) {
-    filteredTopics = filteredTopics.filter(data => data.topic.toLowerCase().includes(searchValue));
-  }
-
-  // if (selectedFilter !== 'Default') {
-  //   filteredTopics = courses.filter(data => data.type === selectedFilter);
-  // }
-  let sortedTopics = filteredTopics;
-
-  if (selectedSort === 'topic-title') {
-    sortedTopics.sort((a, b) => a.topic.localeCompare(b.topic));
-  } else if (selectedSort === 'author-name') {
-    sortedTopics.sort((a, b) => a.name.localeCompare(b.name));
-  }
-  createCards(sortedTopics);
 }
-
 
 function createCards(topics) {
   cards.innerHTML = '';

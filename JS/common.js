@@ -30,9 +30,26 @@ const createRatingStars = (rating, parent) => {
     }
 };
 
+async function fetchData(url) {
+  const res = await fetch(url);
+    if (!res.ok) {
+        throw new Error('Network response was not OK');
+    }
+    return await res.json();
+}
 
+function debounce(callback, delay) {
+    let timer;
+    return function () {
+      clearTimeout(timer);
+      timer = setTimeout(callback, delay);
+    };
+  }
+  
 
 export {
     createElement,
-    createRatingStars
+    createRatingStars,
+    fetchData,
+    debounce
 }

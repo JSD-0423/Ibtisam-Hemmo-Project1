@@ -1,34 +1,37 @@
-import { createElement, createRatingStars } from './common.js';
+import { createElement, createRatingStars, fetchData } from './common.js';
 
 const urlParams = new URLSearchParams(window.location.search);
 const cardIndex = urlParams.get('cardIndex');
 const loadingSpinner = document.querySelector('.loading');
 const errorMsg = document.querySelector('.error-msg');
-
 const details = document.querySelector('.details-container');
 const listContainer = document.querySelector('.list-items-container');
 const favoritesContainer = document.querySelector('.favorites-container');
+const favorites = loadFavorites();
 let cardDetails = [];
 let courses = []
 
-const favorites = loadFavorites();
+fetchData('https://tap-web-1.herokuapp.com/topics/list')
+    .then(data => {
+        courses = data;
+        updateFavoritesContainer()
+    })
+    .catch((err) => {
+        console.error(err)
+    });
 
-loadingSpinner.style.display = 'block';
-
-fetch(`https://tap-web-1.herokuapp.com/topics/details/${cardIndex}`)
-    .then((res) => res.json())
+fetchData(`https://tap-web-1.herokuapp.com/topics/details/${cardIndex}`)
     .then((data) => {
         cardDetails = data;
         createDetailsCard(data)
         createList(data.subtopics);
         updateFavoritesContainer();
-        loadingSpinner.style.display = 'none';
     })
-    .catch((err) => {
-        loadingSpinner.style.display = 'none';
+    .catch(() => {
         errorMsg.textContent = 'Something went wrong. Web topics failed to load.';
-        console.error(err)
-    })
+    }).finally(() => {
+        loadingSpinner.style.display = 'none';
+    });
 
 function createDetailsCard(cardDetails) {
     const { category, topic, rating, description, image, name } = cardDetails;
@@ -59,14 +62,17 @@ function createDetailsCard(cardDetails) {
     addFav.addEventListener('click', () => {
         if (!favorites.includes(cardIndex)) {
             favorites.push(cardIndex);
-            addFav.textContent = 'Remove From Favorites'
+            addFav.textContent = 'Remove From Favorites';
         } else {
-            favorites.splice(cardIndex, 1);
-            addFav.textContent = 'Add to Favorites'
+            const index = favorites.indexOf(cardIndex);
+            if (index !== -1) {
+                favorites.splice(index, 1);
+                addFav.textContent = 'Add to Favorites';
+            }
         }
         updateFavoritesContainer();
         saveFavorites();
-    });
+    })
     updateAddFavBtn();
 }
 
@@ -81,24 +87,9 @@ function createList(data) {
     })
 }
 
-fetch('https://tap-web-1.herokuapp.com/topics/list')
-    .then(res => {
-        if (!res.ok) {
-            throw new Error('Network response was not OK');
-        }
-        return res.json();
-    })
-    .then(data => {
-        courses = data;
-        updateFavoritesContainer()
-    })
-    .catch((err) => {
-        console.error(err)
-    });
-
 function updateFavoritesContainer() {
     if (favorites.length === 0) {
-        favoritesContainer.innerHTML = 'No favorites yet, browse some courses and pick yours'
+        favoritesContainer.innerHTML = 'No favorites yet, Browse some courses and pick yours'
     } else {
         favoritesContainer.innerHTML = '';
         favorites.forEach((ele) => {
