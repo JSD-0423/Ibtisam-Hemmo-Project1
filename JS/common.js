@@ -14,7 +14,7 @@ const createElement = (type, options, parent) => {
 
 const createRatingStars = (rating, parent) => {
     const MAX_STARS = 5;
-    const ratingPercentage = (rating / 100) * MAX_STARS;
+    const ratingPercentage = (rating / 5) * MAX_STARS;
     const wholeStars = Math.floor(ratingPercentage);
     const halfStars = Math.ceil(ratingPercentage - wholeStars);
     const emptyStars = MAX_STARS - wholeStars - halfStars;
@@ -30,7 +30,19 @@ const createRatingStars = (rating, parent) => {
     }
 };
 
-export{
+function debounce(func, delay) {
+    let timeoutId;
+
+    return function (...args) {
+        clearTimeout(timeoutId);
+        timeoutId = setTimeout(() => {
+            func.apply(this, args);
+        }, delay);
+    };
+}
+
+export {
     createElement,
-    createRatingStars
+    createRatingStars,
+    debounce
 }
