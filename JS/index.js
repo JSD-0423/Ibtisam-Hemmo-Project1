@@ -33,6 +33,7 @@ fetch('https://tap-web-1.herokuapp.com/topics/list')
   })
   .catch((err) => {
     loadingSpinner.style.display = 'none';
+    searchedTitle.textContent = 'Something went wrong. Web topics failed to load.';
     console.error(err)
   });
 

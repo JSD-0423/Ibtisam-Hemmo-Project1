@@ -3,6 +3,7 @@ import { createElement, createRatingStars } from './common.js';
 const urlParams = new URLSearchParams(window.location.search);
 const cardIndex = urlParams.get('cardIndex');
 const loadingSpinner = document.querySelector('.loading');
+const errorMsg = document.querySelector('.error-msg');
 
 const details = document.querySelector('.details-container');
 const listContainer = document.querySelector('.list-items-container');
@@ -21,6 +22,7 @@ fetch(`https://tap-web-1.herokuapp.com/topics/details/${cardIndex}`)
     })
     .catch((err) => {
         loadingSpinner.style.display = 'none';
+        errorMsg.textContent = 'Something went wrong. Web topics failed to load.';
         console.error(err)
     })
 
