@@ -9,6 +9,10 @@ const details = document.querySelector('.details-container');
 const listContainer = document.querySelector('.list-items-container');
 const favoritesContainer = document.querySelector('.favorites-container');
 let cardDetails = [];
+let courses = []
+
+const favorites = loadFavorites();
+
 loadingSpinner.style.display = 'block';
 
 fetch(`https://tap-web-1.herokuapp.com/topics/details/${cardIndex}`)
@@ -16,9 +20,9 @@ fetch(`https://tap-web-1.herokuapp.com/topics/details/${cardIndex}`)
     .then((data) => {
         cardDetails = data;
         createDetailsCard(data)
-        createList(data.subtopics)
+        createList(data.subtopics);
+        updateFavoritesContainer();
         loadingSpinner.style.display = 'none';
-
     })
     .catch((err) => {
         loadingSpinner.style.display = 'none';
@@ -48,9 +52,22 @@ function createDetailsCard(cardDetails) {
     createElement('span', { class: 'text-link text-decoration-underline fs-custom', textContent: name }, statement)
     const outlinedCard = createElement('div', { class: 'border border-1 border-black border-opacity-10 d-flex flex-column gap-2 outlined-card p-3' }, courseInfo);
     createElement('p', { textContent: 'Interested about this topic?', class: 'mb-0' }, outlinedCard);
-    const addFav = createElement('button', { textContent: 'Add to Favorites', type: 'submit', class: 'add-fav align-items-center border-0 card-button d-flex fs-5 justify-content-around px-3 py-2 text-white' }, outlinedCard);
+    const addFav = createElement('button', { textContent: 'Add to Favorites', type: 'submit', class: 'add-fav align-items-center border-0 card-button d-flex fs-6 justify-content-around px-3 py-2 text-white' }, outlinedCard);
     createElement('ion-icon', { name: 'heart-outline', class: 'heart-icon heard-card' }, addFav);
     createElement('p', { textContent: 'Unlimited Credits', class: ' custom-sm-fs mb-0 opacity-50 text-black text-center' }, outlinedCard);
+
+    addFav.addEventListener('click', () => {
+        if (!favorites.includes(cardIndex)) {
+            favorites.push(cardIndex);
+            addFav.textContent = 'Remove From Favorites'
+        } else {
+            favorites.splice(cardIndex, 1);
+            addFav.textContent = 'Add to Favorites'
+        }
+        updateFavoritesContainer();
+        saveFavorites();
+    });
+    updateAddFavBtn();
 }
 
 function createList(data) {
@@ -64,3 +81,51 @@ function createList(data) {
     })
 }
 
+fetch('https://tap-web-1.herokuapp.com/topics/list')
+    .then(res => {
+        if (!res.ok) {
+            throw new Error('Network response was not OK');
+        }
+        return res.json();
+    })
+    .then(data => {
+        courses = data;
+        updateFavoritesContainer()
+    })
+    .catch((err) => {
+        console.error(err)
+    });
+
+function updateFavoritesContainer() {
+    if (favorites.length === 0) {
+        favoritesContainer.innerHTML = 'No favorites yet, browse some courses and pick yours'
+    } else {
+        favoritesContainer.innerHTML = '';
+        favorites.forEach((ele) => {
+            const course = courses.find(course => course.id == ele);
+            if (course) {
+                const favCard = createElement('div', { class: 'card border-0 custom-default-bg-color custom-shadow overflow-hidden rounded-1 card-w flex-shrink-0 fav-card', id: ele }, favoritesContainer);
+                createElement('img', { src: './assets/' + course.image, alt: course.topic, class: ' card-top-img fav-img' }, favCard);
+                const cardInfo = createElement('div', { class: 'card-body p-1' }, favCard);
+                createElement('h5', { textContent: course.topic, class: "fs-6 fw-bold overflow-hidden" }, cardInfo);
+                const rateContainer = createElement('div', { class: 'text-orange' }, cardInfo);
+                createRatingStars(course.rating, rateContainer);
+            }
+        })
+    }
+}
+
+function updateAddFavBtn() {
+    const addFav = document.querySelector('.add-fav')
+    if (favorites.includes(cardIndex)) {
+        addFav.textContent = 'Remove from Favorites';
+    }
+}
+
+function loadFavorites() {
+    return JSON.parse(localStorage.getItem('favorites') || '[]');
+}
+
+function saveFavorites() {
+    localStorage.setItem('favorites', JSON.stringify(favorites));
+}

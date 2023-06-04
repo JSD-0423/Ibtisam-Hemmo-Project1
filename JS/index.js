@@ -1,4 +1,4 @@
-import { createElement, createRatingStars, debounce } from './common.js';
+import { createElement, createRatingStars } from './common.js';
 
 const cards = document.querySelector('.cards');
 const themeBtn = document.querySelector('.dark-mode');
@@ -13,6 +13,7 @@ const filterSelectMenu = document.getElementById('filter-menu');
 const sortSelectMenu = document.getElementById('sort-menu');
 const loadingSpinner = document.querySelector('.loading');
 const savedTheme = localStorage.getItem('theme') || 'light';
+
 let courses = [];
 setTheme(savedTheme);
 
