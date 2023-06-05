@@ -14,6 +14,7 @@ let courses = []
 favoritesBtn.addEventListener('click', () => toggleFavorites());
 themeBtn.addEventListener('click', () => toggleTheme())
 
+setTheme(savedTheme)
 function toggleTheme() {
     const currentTheme = localStorage.getItem('theme') || 'light';
     const newTheme = currentTheme === 'light' ? 'dark' : 'light';
