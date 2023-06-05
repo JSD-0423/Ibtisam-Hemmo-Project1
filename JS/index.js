@@ -1,60 +1,29 @@
-import { createElement, createRatingStars, fetchData, debounce } from './common.js';
+import { createElement, createRatingStars, fetchData, debounce } from './utils.js';
+import { updateFavoritesContainer } from './common.js';
 
 const cards = document.querySelector('.cards');
-const themeBtn = document.querySelector('.dark-mode');
-const modeIcon = document.getElementById('mode-icon');
-const modeText = document.getElementById('mode-text');
-const favoritesBtn = document.querySelector('.favorites');
-const favPopUp = document.getElementById('popup-container');
-const favIcon = document.getElementById('fav-icon');
 const searchInput = document.getElementById('search-input');
 const searchedTitle = document.querySelector('.subtitle');
 const filterSelectMenu = document.getElementById('filter-menu');
 const sortSelectMenu = document.getElementById('sort-menu');
 const loadingSpinner = document.querySelector('.loading');
-const savedTheme = localStorage.getItem('theme') || 'light';
 let courses = [];
 
-setTheme(savedTheme);
-loadingSpinner.style.display = 'block';
-
-favoritesBtn.addEventListener('click', () => toggleFavorites());
 searchInput.addEventListener('input', debounce(applyFiltersAndSort, 300));
 filterSelectMenu.addEventListener('change', debounce(applyFiltersAndSort, 300));
 sortSelectMenu.addEventListener('change', debounce(applyFiltersAndSort, 300));
-themeBtn.addEventListener('click', () => {
-  const currentTheme = localStorage.getItem('theme') || 'light';
-  const newTheme = currentTheme === 'light' ? 'dark' : 'light';
-
-  setTheme(newTheme);
-})
 
 fetchData('https://tap-web-1.herokuapp.com/topics/list')
   .then(data => {
     courses = data;
     createCards(data);
+    updateFavoritesContainer();
   })
   .catch(() => {
     searchedTitle.textContent = 'Something went wrong. Web topics failed to load.';
   }).finally(() => {
     loadingSpinner.style.display = 'none';
   });
-
-
-function setTheme(theme) {
-  const root = document.documentElement;
-  root.setAttribute('data-theme', theme);
-
-  if (theme === 'dark') {
-    modeIcon.setAttribute('name', 'sunny-outline');
-    modeText.textContent = 'Light Mode';
-  } else {
-    modeIcon.setAttribute('name', 'moon-outline');
-    modeText.textContent = 'Dark Mode';
-  }
-
-  localStorage.setItem('theme', theme);
-}
 
 function applyFiltersAndSort() {
   let filteredTopics = courses;
@@ -64,6 +33,7 @@ function applyFiltersAndSort() {
   }
   let sortedTopics = filteredTopics;
   sortedTopics = sortTopics(filteredTopics, sortSelectMenu.value);
+  sortedTopics = filterTopics(sortedTopics, filterSelectMenu.value);
   createCards(sortedTopics);
 }
 
@@ -80,16 +50,9 @@ function sortTopics(topics, Option) {
   return topics;
 }
 
-function toggleFavorites() {
-  if (favPopUp.style.display === 'block') {
-    favPopUp.style.display = 'none';
-    favIcon.setAttribute('name', 'heart-outline');
-    favIcon.style.color = 'black';
-  } else {
-    favPopUp.style.display = 'block';
-    favIcon.setAttribute('name', 'heart');
-    favIcon.style.color = 'red';
-  }
+function filterTopics(topics, Option) {
+
+  return topics;
 }
 
 function createCards(topics) {
@@ -103,7 +66,7 @@ function createCards(topics) {
     createElement('img', { src: `/assets/${course.image}`, class: 'card-img-top object-fit-cover' }, imgContainer);
     const info = createElement('div', { class: 'card-body' }, anchor);
     const head = createElement('div', { class: 'card-content body-text-color' }, info);
-    createElement('p', { textContent: 'Web Development Languages', class: 'overflow-hidden mb-1' }, head);
+    createElement('p', { textContent: course.category ?? 'Web Development Languages', class: 'overflow-hidden mb-1' }, head);
     createElement('h3', { textContent: course.topic, class: 'overflow-hidden fw-bold' }, head);
     const footer = createElement('div', {}, info);
     const rate = createElement('div', { class: 'text-orange mb-2 mt-3', }, footer);
@@ -111,4 +74,3 @@ function createCards(topics) {
     createElement('div', { class: 'fs-custom text-lines-color', textContent: 'Author: ' + course.name }, footer);
   })
 }
-
