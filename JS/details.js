@@ -1,4 +1,5 @@
-import { createElement, createRatingStars, fetchData } from './common.js';
+import { createElement, createRatingStars, fetchData } from './utils.js';
+import { updateAddFavBtn, updateFavoritesContainer, loadFavorites } from './common.js';
 
 const urlParams = new URLSearchParams(window.location.search);
 const cardIndex = urlParams.get('cardIndex');
@@ -6,19 +7,8 @@ const loadingSpinner = document.querySelector('.loading');
 const errorMsg = document.querySelector('.error-msg');
 const details = document.querySelector('.details-container');
 const listContainer = document.querySelector('.list-items-container');
-const favoritesContainer = document.querySelector('.favorites-container');
 const favorites = loadFavorites();
 let cardDetails = [];
-let courses = []
-
-fetchData('https://tap-web-1.herokuapp.com/topics/list')
-    .then(data => {
-        courses = data;
-        updateFavoritesContainer()
-    })
-    .catch((err) => {
-        console.error(err)
-    });
 
 fetchData(`https://tap-web-1.herokuapp.com/topics/details/${cardIndex}`)
     .then((data) => {
@@ -27,7 +17,7 @@ fetchData(`https://tap-web-1.herokuapp.com/topics/details/${cardIndex}`)
         createList(data.subtopics);
         updateFavoritesContainer();
     })
-    .catch(() => {
+    .catch((err) => {
         errorMsg.textContent = 'Something went wrong. Web topics failed to load.';
     }).finally(() => {
         loadingSpinner.style.display = 'none';
@@ -73,7 +63,7 @@ function createDetailsCard(cardDetails) {
         updateFavoritesContainer();
         saveFavorites();
     })
-    updateAddFavBtn();
+    updateAddFavBtn(cardIndex);
 }
 
 function createList(data) {
@@ -85,36 +75,6 @@ function createList(data) {
         createElement('ion-icon', { name: 'checkmark-circle-outline', class: 'flex-shrink-0 fs-4 hydrated md secondary-color' }, item)
         createElement('span', { textContent: subTopic }, item)
     })
-}
-
-function updateFavoritesContainer() {
-    if (favorites.length === 0) {
-        favoritesContainer.innerHTML = 'No favorites yet, Browse some courses and pick yours'
-    } else {
-        favoritesContainer.innerHTML = '';
-        favorites.forEach((ele) => {
-            const course = courses.find(course => course.id == ele);
-            if (course) {
-                const favCard = createElement('div', { class: 'card border-0 custom-default-bg-color custom-shadow overflow-hidden rounded-1 card-w flex-shrink-0 fav-card', id: ele }, favoritesContainer);
-                createElement('img', { src: './assets/' + course.image, alt: course.topic, class: ' card-top-img fav-img' }, favCard);
-                const cardInfo = createElement('div', { class: 'card-body p-1' }, favCard);
-                createElement('h5', { textContent: course.topic, class: "fs-6 fw-bold overflow-hidden" }, cardInfo);
-                const rateContainer = createElement('div', { class: 'text-orange' }, cardInfo);
-                createRatingStars(course.rating, rateContainer);
-            }
-        })
-    }
-}
-
-function updateAddFavBtn() {
-    const addFav = document.querySelector('.add-fav')
-    if (favorites.includes(cardIndex)) {
-        addFav.textContent = 'Remove from Favorites';
-    }
-}
-
-function loadFavorites() {
-    return JSON.parse(localStorage.getItem('favorites') || '[]');
 }
 
 function saveFavorites() {
