@@ -20,8 +20,8 @@ fetchData('https://tap-web-1.herokuapp.com/topics/list')
     updateFavoritesContainer();
     createFilterOptions();
   })
-  .catch(() => {
-    searchedTitle.textContent = 'Something went wrong. Web topics failed to load.';
+  .catch(error => {
+      searchedTitle.textContent = 'Something went wrong. Web topics failed to load.';
   }).finally(() => {
     loadingSpinner.style.display = 'none';
   });
@@ -47,7 +47,6 @@ function applyFiltersAndSort() {
   if (sortSelectMenu.value !== 'default') {
     sortedTopics = sortTopics(filteredTopics, sortSelectMenu.value);
   } else {
-    console.log('sortedTopics: ',);
     sortedTopics = filteredTopics;
   }
   if (filterSelectMenu.value !== 'default') {
