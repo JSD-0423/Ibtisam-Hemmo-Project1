@@ -18,12 +18,24 @@ fetchData('https://tap-web-1.herokuapp.com/topics/list')
     courses = data;
     createCards(data);
     updateFavoritesContainer();
+    createFilterOptions();
   })
-  .catch(() => {
-    searchedTitle.textContent = 'Something went wrong. Web topics failed to load.';
+  .catch(error => {
+      searchedTitle.textContent = 'Something went wrong. Web topics failed to load.';
   }).finally(() => {
     loadingSpinner.style.display = 'none';
   });
+
+function createFilterOptions() {
+  const categories = [...new Set(courses.map(course => course.category))];
+
+  categories.forEach(category => {
+    const option = document.createElement("option");
+    option.value = category;
+    option.textContent = category;
+    filterSelectMenu.appendChild(option);
+  });
+}
 
 function applyFiltersAndSort() {
   let filteredTopics = courses;
@@ -32,8 +44,17 @@ function applyFiltersAndSort() {
     filteredTopics = filterTopicsBySearch(filteredTopics, searchValue);
   }
   let sortedTopics = filteredTopics;
-  sortedTopics = sortTopics(filteredTopics, sortSelectMenu.value);
-  sortedTopics = filterTopics(sortedTopics, filterSelectMenu.value);
+  if (sortSelectMenu.value !== 'default') {
+    sortedTopics = sortTopics(filteredTopics, sortSelectMenu.value);
+  } else {
+    sortedTopics = filteredTopics;
+  }
+  if (filterSelectMenu.value !== 'default') {
+    sortedTopics = filterTopics(sortedTopics, filterSelectMenu.value);
+  } else {
+    sortedTopics = filteredTopics;
+  }
+
   createCards(sortedTopics);
 }
 
@@ -51,8 +72,7 @@ function sortTopics(topics, Option) {
 }
 
 function filterTopics(topics, Option) {
-
-  return topics;
+  return topics.filter(topic => topic.category == Option);
 }
 
 function createCards(topics) {

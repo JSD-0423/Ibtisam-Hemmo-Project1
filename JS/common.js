@@ -66,7 +66,8 @@ function updateFavoritesContainer() {
         favorites.forEach((ele) => {
             const course = courses.find(course => course.id == ele);
             if (course) {
-                const favCard = createElement('div', { class: 'card border-0 custom-default-bg-color custom-shadow overflow-hidden rounded-1 card-w flex-shrink-0 fav-card', id: ele }, favoritesContainer);
+                const anchor = createElement('a', { href: `details.html?cardIndex=${course.id}` }, favoritesContainer)
+                const favCard = createElement('div', { class: 'card border-0 custom-default-bg-color custom-shadow overflow-hidden rounded-1 card-w flex-shrink-0 fav-card', id: ele }, anchor);
                 createElement('img', { src: './assets/' + course.image, alt: course.topic, class: ' card-top-img fav-img' }, favCard);
                 const cardInfo = createElement('div', { class: 'card-body p-1' }, favCard);
                 createElement('h5', { textContent: course.topic, class: "fs-6 fw-bold overflow-hidden body-text-color" }, cardInfo);
