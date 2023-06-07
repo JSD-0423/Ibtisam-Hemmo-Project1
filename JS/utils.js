@@ -31,7 +31,7 @@ const createRatingStars = (rating, parent) => {
 };
 
 async function fetchData(url) {
-  const res = await fetch(url);
+    const res = await fetch(url);
     if (!res.ok) {
         throw new Error('Network response was not OK');
     }
@@ -41,15 +41,29 @@ async function fetchData(url) {
 function debounce(callback, delay) {
     let timer;
     return function () {
-      clearTimeout(timer);
-      timer = setTimeout(callback, delay);
+        clearTimeout(timer);
+        timer = setTimeout(callback, delay);
     };
-  }
-  
+}
+
+function saveToLocalStorage(key, element) {
+    localStorage.setItem(key, JSON.stringify(element));
+}
+
+function getFromLocalStorage(key) {
+    return JSON.parse(localStorage.getItem(key) || '[]');
+}
+
+function attachEventListener(element, event, cb, time) {
+    element.addEventListener(event, debounce(()=>cb(element), time));
+}
 
 export {
     createElement,
     createRatingStars,
     fetchData,
-    debounce
+    debounce,
+    saveToLocalStorage,
+    getFromLocalStorage,
+    attachEventListener
 }
