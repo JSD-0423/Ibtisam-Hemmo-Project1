@@ -25,7 +25,7 @@ export function renderCards(topics) {
             const anchor = createElement('a', { href: `details.html?cardIndex=${course.id}`, class: 'card custom-default-bg-color overflow-hidden border-0' }, card);
             anchor.setAttribute('data-index', course.id);
             const imgContainer = createElement('div', { class: 'overflow-hidden bg-white' }, anchor)
-            createElement('img', { src: `/assets/${course.image}`, class: 'card-img-top object-fit-cover' }, imgContainer);
+            createElement('img', { src: `./assets/${course.image}`, class: 'card-img-top object-fit-cover' }, imgContainer);
             const info = createElement('div', { class: 'card-body' }, anchor);
             const head = createElement('div', { class: 'card-content body-text-color' }, info);
             createElement('p', { textContent: course.category ?? 'Web Development Languages', class: 'overflow-hidden mb-1' }, head);
