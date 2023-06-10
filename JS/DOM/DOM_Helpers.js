@@ -1,3 +1,5 @@
+import { debounce } from "../debounce.js";
+
 const createElement = (type, options, parent) => {
     const element = document.createElement(type);
     for (let option in options) {
@@ -30,26 +32,13 @@ const createRatingStars = (rating, parent) => {
     }
 };
 
-async function fetchData(url) {
-  const res = await fetch(url);
-    if (!res.ok) {
-        throw new Error('Network response was not OK');
-    }
-    return await res.json();
+function attachEventListener(element, event, cb, time) {
+    element.addEventListener(event, debounce(() => cb(element), time));
 }
 
-function debounce(callback, delay) {
-    let timer;
-    return function () {
-      clearTimeout(timer);
-      timer = setTimeout(callback, delay);
-    };
-  }
-  
 
 export {
     createElement,
     createRatingStars,
-    fetchData,
-    debounce
+    attachEventListener
 }
