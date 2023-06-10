@@ -22,7 +22,7 @@ This project is a demonstration of my skills in structure, layout and clean CSS.
 ## Project Development
   This project has been developed using both 
   - pure HTML/CSS, which can be found on the "pure-html-css" branch.
-  - Bootstrap, which is utilized in the "main" branch.
+  - Bootstrap with js functionality, which is utilized in the "js-functionality" branch.
   
 ## Live Preview
 - [GO LIVE](https://jsd-0423.github.io/Ibtisam-Hemmo-Project1/) :heart:
