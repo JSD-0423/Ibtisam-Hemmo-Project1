@@ -40,7 +40,7 @@ function renderFavorites(favorites) {
     } else {
         favorites.forEach(course => {
             const favCard = createElement('div', { class: 'card border-0 custom-default-bg-color custom-shadow overflow-hidden rounded-1 card-w flex-shrink-0 fav-card', id: course }, favoritesContainer);
-            createElement('img', { src: './assets/' + course.image, alt: course.topic, class: ' card-top-img fav-img' }, favCard);
+            createElement('img', { src: './assets/' + course.image, alt: course.topic, class: ' card-top-img fav-img bg-white' }, favCard);
             const cardInfo = createElement('div', { class: 'card-body p-1' }, favCard);
             createElement('h5', { textContent: course.topic, class: "fs-6 fw-bold overflow-hidden body-text-color" }, cardInfo);
             const rateContainer = createElement('div', { class: 'text-orange' }, cardInfo);

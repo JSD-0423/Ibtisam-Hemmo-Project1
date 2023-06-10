@@ -8,7 +8,7 @@ function fetchFilterCategories(courses) {
 async function processFunctions(filterValue, sortValue, inputValue) {
     try {
         const filteredTopics = await applySearchFilter(filterValue, inputValue);
-        const sortedTopics = applySort(sortValue, filteredTopics);
+        const sortedTopics = applySortTopics(sortValue, filteredTopics);
         renderCards(sortedTopics);
     } catch (error) {
         console.log('error: ', error);
@@ -34,8 +34,7 @@ async function applySearchFilter(filterValue, inputValue) {
     }
 }
 
-function sortTopicsByTitle(sortValue, topics) {
-    const sortedTopics = [...topics];
+function applySortTopics(sortValue, topics) {
 
     if (sortValue === 'topic-title') {
         return topics.sort((a, b) => a.topic.localeCompare(b.topic));
@@ -43,12 +42,9 @@ function sortTopicsByTitle(sortValue, topics) {
         return topics.sort((a, b) => a.name.localeCompare(b.name));
     }
 
-    return sortedTopics;
+    return topics;
 }
 
-function applySort(sortValue, topics) {
-    return sortTopicsByTitle(sortValue, topics);
-}
 
 export {
     fetchFilterCategories,

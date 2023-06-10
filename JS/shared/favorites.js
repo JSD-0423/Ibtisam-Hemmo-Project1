@@ -7,18 +7,18 @@ function addToFavorite(cardIndex, addFav) {
         favorites.push(cardIndex);
         addFav.textContent = 'Remove From Favorites';
     } else {
-        const index = favorites.indexOf(cardIndex);
-        if (index !== -1) {
-            favorites.splice(index, 1);
-            addFav.textContent = 'Add to Favorites';
-        }
+        deleteFromFavorite(cardIndex, addFav);
     }
     updateFavoritesContainer();
     saveFavorites();
 }
 
-function deleteFromFavorite() {
-
+function deleteFromFavorite(cardIndex, addFav) {
+    const index = favorites.indexOf(cardIndex);
+    if (index !== -1) {
+        favorites.splice(index, 1);
+        addFav.textContent = 'Add to Favorites';
+    }
 }
 
 function loadFavorites() {

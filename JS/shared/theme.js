@@ -1,4 +1,3 @@
-
 const themeBtn = document.querySelector('.dark-mode');
 const modeIcon = document.getElementById('mode-icon');
 const modeText = document.getElementById('mode-text');
@@ -35,10 +34,3 @@ export {
     setTheme,
     toggleTheme
 }
-
-// function updateAddFavBtn(cardIndex) {
-//     const addFav = document.querySelector('.add-fav')
-//     if (favorites.includes(cardIndex)) {
-//         addFav.textContent = 'Remove from Favorites';
-//     }
-// }
