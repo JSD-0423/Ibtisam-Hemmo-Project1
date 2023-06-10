@@ -1,11 +1,11 @@
-import { loadFavorites, updateAddFavBtn, updateFavoritesContainer } from "../common.js";
-import { createElement } from "../utils.js";
+import { createElement, createRatingStars } from "../DOM/DOM_Helpers.js";
+import { addToFavorite, updateAddFavBtn } from '../shared/favorites.js'
+import { updateFavoritesContainer } from "../shared/favoritesDom.js";
 
 const details = document.querySelector('.details-container');
 const listContainer = document.querySelector('.list-items-container');
-const favorites = loadFavorites();
 
-function renderCard(cardDetails) {
+function renderCard(cardIndex, cardDetails) {
     const { category, topic, rating, description, image, name } = cardDetails;
 
     const textContainer = createElement('div', { class: 'text-container w-60 text-white d-flex flex-column gap-3 py-2' }, details);
@@ -30,37 +30,23 @@ function renderCard(cardDetails) {
     const addFav = createElement('button', { textContent: 'Add to Favorites', type: 'submit', class: 'add-fav align-items-center border-0 card-button d-flex fs-6 justify-content-around px-3 py-2 text-white' }, outlinedCard);
     createElement('ion-icon', { name: 'heart-outline', class: 'heart-icon heard-card' }, addFav);
     createElement('p', { textContent: 'Unlimited Credits', class: ' custom-sm-fs mb-0 opacity-50 text-black text-center' }, outlinedCard);
-
+    
     addFav.addEventListener('click', () => {
-        if (!favorites.includes(cardIndex)) {
-            favorites.push(cardIndex);
-            addFav.textContent = 'Remove From Favorites';
-        } else {
-            const index = favorites.indexOf(cardIndex);
-            if (index !== -1) {
-                favorites.splice(index, 1);
-                addFav.textContent = 'Add to Favorites';
-            }
-        }
-        updateFavoritesContainer();
-        saveFavorites();
+        addToFavorite(cardIndex, addFav)
     })
     updateAddFavBtn(cardIndex);
+    updateFavoritesContainer();
 }
 
-function renderList(data) {
+function renderList(topic, data) {
     const itemsContainer = createElement('div', { class: 'body-text-color custom-default-bg-color rounded-1 w-60 ' }, listContainer);
-    createElement('h1', { class: 'fs-4 fw-bold px-4 py-3', textContent: `${cardDetails.topic} Sub Topics` }, itemsContainer);
+    createElement('h1', { class: 'fs-4 fw-bold px-4 py-3', textContent: `${topic} Sub Topics` }, itemsContainer);
     const listItems = createElement('ul', { class: 'p-0' }, itemsContainer);
     data.map((subTopic) => {
         const item = createElement('li', { class: 'align-items-center d-flex gap-3 item px-4 py-3' }, listItems)
         createElement('ion-icon', { name: 'checkmark-circle-outline', class: 'flex-shrink-0 fs-4 hydrated md secondary-color' }, item)
         createElement('span', { textContent: subTopic }, item)
     })
-}
-
-function saveFavorites() {
-    localStorage.setItem('favorites', JSON.stringify(favorites));
 }
 
 export {
