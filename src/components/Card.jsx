@@ -8,7 +8,7 @@ const Card = ({ data }) => {
     <>
       <div className="overflow-hidden bg-white">
         <img
-          src={`../assets/${img}`}
+          src={`../assets/images/${img}`}
           className="card-img-top object-fit-cover"
         />
       </div>
