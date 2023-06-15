@@ -13,7 +13,7 @@ const SelectMenu = ({
   return (
     <>
       <div className={wrapperClassName}>
-        <label for={labelFor} className={labelClassName}>
+        <label htmlFor={labelFor} className={labelClassName}>
           {labelText}
         </label>
         <select title={selectTitle} id={selectId} className={selectClassName}>

@@ -1,34 +1,27 @@
 import React from "react";
+import Rating from "./Rating";
 
 const Card = ({ data }) => {
-  const { img, category, topic, author } = data;
+  const { img, category, topic, name, rating } = data;
+
   return (
     <>
-      <div class="overflow-hidden bg-white">
-        <img src={`../assets/${img}`} class="card-img-top object-fit-cover" />
+      <div className="overflow-hidden bg-white">
+        <img
+          src={`../assets/${img}`}
+          className="card-img-top object-fit-cover"
+        />
       </div>
-      <div class="card-body">
-        <div class="card-content body-text-color">
-          <p class="overflow-hidden mb-1">{category}</p>
-          <h3 class="overflow-hidden fw-bold">{topic}</h3>
+      <div className="card-body">
+        <div className="card-content body-text-color">
+          <h2 className="overflow-hidden mb-1 fs-custom">{category}</h2>
+          <h3 className="overflow-hidden fw-bold">{topic}</h3>
         </div>
         <div>
-          <div class="text-orange mb-2 mt-3">
-            <ion-icon name="star" role="img" class="md hydrated"></ion-icon>
-            <ion-icon name="star" role="img" class="md hydrated"></ion-icon>
-            <ion-icon name="star" role="img" class="md hydrated"></ion-icon>
-            <ion-icon
-              name="star-half"
-              role="img"
-              class="md hydrated"
-            ></ion-icon>
-            <ion-icon
-              name="star-outline"
-              role="img"
-              class="md hydrated"
-            ></ion-icon>
+          <div className="text-orange mb-2 mt-3">
+            {<Rating rating={rating} />}
           </div>
-          <div class="fs-custom text-lines-color">Author: {author}</div>
+          <div className="fs-custom text-lines-color">Author: {name}</div>
         </div>
       </div>
     </>

@@ -1,5 +1,6 @@
 import React from "react";
 import { ButtonGroup, Container } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
 import TextIconButton from "./TextIconButton";
 
@@ -9,7 +10,9 @@ const Navbar = () => {
       fluid
       className="d-flex align-items-center justify-content-between py-3"
     >
-      <h1 className="fs-6 primary-color">Web Topics</h1>
+      <Link to="/">
+        <h1 className="fs-6 primary-color">Web Topics</h1>
+      </Link>
       <ButtonGroup>
         <TextIconButton
           buttonClassName=" px-2 py-1 me-2 border-secondary-subtle rounded-1 d-flex align-items-center bg-transparent custom-primary-hover body-text-color dark-mode"
