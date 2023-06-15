@@ -1,6 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@200;400;700;800&display=swap");
 
-:root[data-theme="light"] {
+:root,
+[data-bs-theme="light"] {
   --brand-primary: #0768ac;
   --brand-secondary: #03c180;
   --bg-default: #ffffff;
@@ -9,8 +10,9 @@
   --body-text: #333333;
   --heart-color: #dc143c;
 }
-
-:root[data-theme="dark"] {
+/* 
+:root,
+[data-bs-theme="dark"] {
   --brand-primary: #0768ac;
   --brand-secondary: #03c180;
   --bg-default: #1a1a1a;
@@ -18,7 +20,7 @@
   --lines-color: #938c8c;
   --body-text: #ededed;
   --heart-color: #dc143c;
-}
+} */
 
 * {
   padding: 0;
@@ -28,12 +30,13 @@
 }
 
 html,
-body {
+body,
+#root {
   height: 100%;
   margin: 0;
 }
 
-body {
+#root {
   background-color: var(--bg-default);
   display: flex;
   flex-direction: column;
@@ -41,7 +44,7 @@ body {
 
 a {
   display: grid;
-  text-decoration: none;
+  text-decoration: none !important;
   color: var(--body-text);
 }
 
@@ -70,7 +73,7 @@ p {
 }
 
 .body-text-color {
-  color: var(--body-text);
+  color: var(--body-text) !important;
 }
 
 .text-orange {
@@ -91,7 +94,7 @@ p {
 
 .custom-primary-hover:hover {
   background-color: var(--brand-primary) !important;
-  color: white;
+  color: white !important;
 }
 
 .custom-translate-top {
@@ -164,7 +167,7 @@ p {
   overflow: hidden;
 }
 
-.cards .card-body p {
+.cards .card-body h2 {
   font-size: 13px;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -348,7 +351,7 @@ footer .custom-icon {
     flex-direction: column;
   }
 
-  .card {
+  .details-container .card {
     position: static !important;
     float: none !important;
     margin-top: 1rem;
