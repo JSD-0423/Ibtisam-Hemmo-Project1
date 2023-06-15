@@ -8,7 +8,7 @@ const DetailsCard = () => {
     >
       <div className="overflow-hidden">
         <img
-          src="../assets/images/css.webp"
+          src="../../assets/images/css.webp"
           alt="CSS"
           className="card-img-top object-fit-cover"
         />
