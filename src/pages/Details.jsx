@@ -1,9 +1,7 @@
 import React from "react";
 import { useParams } from "react-router-dom";
-import DetailsWrapper from "../components/details/DetailsWrapper";
-import Footer from "../components/Footer";
-import Header from "../components/Header";
-import ListContainer from "../components/ListContainer";
+import { DetailsWrapper, ListContainer } from "../components/Details";
+import { Header, Footer } from "../components/Shared";
 
 const Details = () => {
   const { id } = useParams();

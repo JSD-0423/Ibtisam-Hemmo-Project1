@@ -1,13 +1,19 @@
 import React from "react";
-import Footer from "../components/Footer";
-import Header from "../components/Header";
-import Main from "../components/Main";
+
+import { Header, Footer } from "../components/Shared";
+import { ActionMenuSection, CardsSection } from "../components/Home";
 
 const Home = () => {
   return (
     <>
       <Header />
-      <Main />
+      <main className="container-fluid custom-bg-color flex-grow-1">
+        <ActionMenuSection />
+        <h2 className="subtitle fs-5 mb-4 fw-bold error-msg body-text-color">
+          "39" Web Topics Found
+        </h2>
+        <CardsSection />
+      </main>
       <Footer />
     </>
   );
