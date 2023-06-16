@@ -1,6 +1,6 @@
 import React from "react";
 
-const DetailsCard = () => {
+const DetailsCard = ({ image, name, id, topic }) => {
   return (
     <div
       className="bg-white border-3 border-white card float-end position-absolute rounded-0"
@@ -8,16 +8,16 @@ const DetailsCard = () => {
     >
       <div className="overflow-hidden">
         <img
-          src="../../assets/images/css.webp"
-          alt="CSS"
+          src={`../../assets/images/${image}`}
+          alt={topic}
           className="card-img-top object-fit-cover"
         />
         <div className="d-flex flex-column gap-2 p-3">
           <div>
-            <h3 className="fs-6 fw-bold d-inline">CSS</h3>
+            <h3 className="fs-6 fw-bold d-inline">{topic}</h3>
             <span> by </span>
             <span className="text-link text-decoration-underline fs-custom">
-              David Lee
+              {name}
             </span>
           </div>
           <div className="border border-1 border-black border-opacity-10 d-flex flex-column gap-2 outlined-card p-3">

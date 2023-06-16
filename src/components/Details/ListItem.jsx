@@ -1,10 +1,13 @@
 import React from "react";
 
-const ListItem = ({ items }) => {
+const ListItem = ({ subTopics }) => {
   return (
-    <ul class="p-0">
-      {items.map((item) => (
-        <li class="align-items-center d-flex gap-3 item px-4 py-3">
+    <ul className="p-0">
+      {subTopics.map((item) => (
+        <li
+          className="align-items-center d-flex gap-3 item px-4 py-3"
+          key={item}
+        >
           <ion-icon
             name="checkmark-circle-outline"
             class="flex-shrink-0 fs-4 hydrated md secondary-color"
