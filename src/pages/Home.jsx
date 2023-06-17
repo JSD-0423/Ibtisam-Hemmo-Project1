@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useMemo, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 
 import { Header, Footer, Loading, Favorites } from "../components/Shared";
 import { ActionMenuSection, CardsSection } from "../components/Home";

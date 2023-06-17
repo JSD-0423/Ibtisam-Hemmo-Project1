@@ -4,6 +4,7 @@ import { fetchTopics, fetchTopic } from "../API/API.js";
 export const TopicsContext = createContext();
 
 export const TopicsContainer = ({ children }) => {
+  const [originalTopics, setOriginalTopics] = useState([]);
   const [topics, setTopics] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -13,7 +14,12 @@ export const TopicsContainer = ({ children }) => {
 
     try {
       const response = await fetchTopics(phrase);
-      setTopics(response);
+      if (phrase) {
+        setTopics(response);
+      } else {
+        setTopics(response);
+        setOriginalTopics(response);
+      }
     } catch (error) {
       setError("Failed to fetch topics.");
     } finally {
@@ -39,8 +45,15 @@ export const TopicsContainer = ({ children }) => {
   };
 
   const value = useMemo(
-    () => ({ topics, loading, error, fetchTopicById, fetchData }),
-    [topics, loading, error, fetchTopicById]
+    () => ({
+      topics,
+      loading,
+      error,
+      fetchTopicById,
+      fetchData,
+      originalTopics,
+    }),
+    [topics, loading, error, fetchTopicById, originalTopics]
   );
 
   return (
