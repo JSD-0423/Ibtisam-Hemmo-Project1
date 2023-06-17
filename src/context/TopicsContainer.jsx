@@ -3,24 +3,25 @@ import { fetchTopics, fetchTopic } from "../API/API.js";
 
 export const TopicsContext = createContext();
 
-const TopicsContainer = ({ children }) => {
+export const TopicsContainer = ({ children }) => {
   const [topics, setTopics] = useState([]);
-  const [topic, setTopic] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await fetchTopics();
-        setTopics(response);
-      } catch (error) {
-        setError("Something went wrong. Web topics failed to load.");
-      } finally {
-        setLoading(false);
-      }
-    };
+  const fetchData = async (phrase = "") => {
+    setLoading(true);
 
+    try {
+      const response = await fetchTopics(phrase);
+      setTopics(response);
+    } catch (error) {
+      setError("Failed to fetch topics.");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
     fetchData();
   }, []);
 
@@ -29,8 +30,7 @@ const TopicsContainer = ({ children }) => {
 
     try {
       const response = await fetchTopic(id);
-      setTopic(response);
-      return topic;
+      return response;
     } catch (error) {
       setError("Failed to fetch topic details.");
     } finally {
@@ -39,13 +39,11 @@ const TopicsContainer = ({ children }) => {
   };
 
   const value = useMemo(
-    () => ({ topics, loading, error, fetchTopicById, topic }),
-    [topics, loading, error, fetchTopicById, topic]
+    () => ({ topics, loading, error, fetchTopicById, fetchData }),
+    [topics, loading, error, fetchTopicById]
   );
 
   return (
     <TopicsContext.Provider value={value}>{children}</TopicsContext.Provider>
   );
 };
-
-export default TopicsContainer;

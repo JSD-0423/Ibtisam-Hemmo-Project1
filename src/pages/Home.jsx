@@ -1,25 +1,62 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useMemo, useState } from "react";
 
-import { Header, Footer, Loading } from "../components/Shared";
+import { Header, Footer, Loading, Favorites } from "../components/Shared";
 import { ActionMenuSection, CardsSection } from "../components/Home";
-import { TopicsContext } from "../context/TopicsContainer";
+import { TopicsContext, FavoritesContext } from "../context";
 
 const Home = () => {
   const { topics, loading, error } = useContext(TopicsContext);
-  if (loading) return <Loading />;
+  const { isFavoriteShown } = useContext(FavoritesContext);
+  const [filteredTopics, setFilteredTopics] = useState([]);
+  const [selectedFilter, setSelectedFilter] = useState("default");
+  const [selectedSort, setSelectedSort] = useState("default");
+
+  const handleFilterChange = (selectedValue) => {
+    setSelectedFilter(selectedValue);
+  };
+
+  const handleSortChange = (selectedValue) => {
+    setSelectedSort(selectedValue);
+  };
+
+  useEffect(() => {
+    let filtered = [...topics];
+
+    if (selectedFilter !== "default") {
+      filtered = filtered.filter((topic) => topic.category === selectedFilter);
+    }
+
+    if (selectedSort === "name") {
+      filtered.sort((a, b) => a.name.localeCompare(b.name));
+    } else if (selectedSort === "topic") {
+      filtered.sort((a, b) => a.topic.localeCompare(b.topic));
+    }
+
+    setFilteredTopics(filtered);
+  }, [topics, selectedFilter, selectedSort]);
+
   return (
     <>
       <Header />
       <main className="container-fluid custom-bg-color flex-grow-1">
-        <ActionMenuSection />
-        <h2 className="subtitle fs-5 mb-4 fw-bold error-msg body-text-color">
-          {error ? error : '"39" Web Topics Found'}
-        </h2>
-        <CardsSection topics={topics} />
+        <ActionMenuSection
+          onFilterChange={handleFilterChange}
+          onSortChange={handleSortChange}
+        />
+        {loading ? (
+          <Loading />
+        ) : (
+          <>
+            <h2 className="subtitle fs-5 mb-4 fw-bold error-msg body-text-color">
+              {error ? error : `"${filteredTopics.length}" Web Topics Found`}
+            </h2>
+            <CardsSection topics={filteredTopics} />
+          </>
+        )}
       </main>
       <Footer />
+      {isFavoriteShown && <Favorites />}
     </>
   );
 };
-
 export default Home;

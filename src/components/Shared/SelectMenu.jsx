@@ -9,6 +9,8 @@ const SelectMenu = ({
   selectId,
   selectClassName,
   options,
+  value,
+  onChange,
 }) => {
   return (
     <>
@@ -16,7 +18,13 @@ const SelectMenu = ({
         <label htmlFor={labelFor} className={labelClassName}>
           {labelText}
         </label>
-        <select title={selectTitle} id={selectId} className={selectClassName}>
+        <select
+          title={selectTitle}
+          id={selectId}
+          className={selectClassName}
+          value={value}
+          onChange={onChange}
+        >
           {options.map(({ value, label }, key) => (
             <option value={value} key={key}>
               {label}

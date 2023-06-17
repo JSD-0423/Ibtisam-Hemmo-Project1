@@ -4,7 +4,7 @@ import { Navbar, HeaderContent } from "../Shared";
 const Header = () => {
   return (
     <header>
-      <Navbar />
+      <Navbar/>
       <HeaderContent />
     </header>
   );

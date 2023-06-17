@@ -1,7 +1,15 @@
-import React from "react";
+import React, { useContext } from "react";
+import { useState } from "react";
+import { TopicsContext } from "../../context";
 import { FormInput } from "../Shared";
 
 const SearchInput = () => {
+  const { fetchData } = useContext(TopicsContext);
+  const [searchText, setSearchText] = useState("");
+  const handleSearch = (e) => {
+    setSearchText(e.target.value);
+    setTimeout(() => fetchData(searchText), 2000);
+  };
   return (
     <div className="align-items-center col-12 col-md-8 d-flex py-md-0 py-sm-3 custom-border-bottom">
       <ion-icon
@@ -16,6 +24,8 @@ const SearchInput = () => {
         placeholder="Search the website..."
         ariaLabel="Search input"
         inputId="search-input"
+        value={searchText}
+        onChange={handleSearch}
       />
     </div>
   );

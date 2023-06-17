@@ -1,7 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@200;400;700;800&display=swap");
 
-:root,
-[data-bs-theme="light"] {
+body.light-theme{
   --brand-primary: #0768ac;
   --brand-secondary: #03c180;
   --bg-default: #ffffff;
@@ -10,9 +9,8 @@
   --body-text: #333333;
   --heart-color: #dc143c;
 }
-/* 
-:root,
-[data-bs-theme="dark"] {
+
+body.dark-theme {
   --brand-primary: #0768ac;
   --brand-secondary: #03c180;
   --bg-default: #1a1a1a;
@@ -20,7 +18,7 @@
   --lines-color: #938c8c;
   --body-text: #ededed;
   --heart-color: #dc143c;
-} */
+}
 
 * {
   padding: 0;
@@ -81,15 +79,15 @@ p {
 }
 
 .text-lines-color {
-  color: var(--lines-color);
+  color: var(--lines-color) !important;
 }
 
 .custom-bg-color {
-  background-color: var(--bg-body);
+  background-color: var(--bg-body) !important;
 }
 
 .custom-default-bg-color {
-  background-color: var(--bg-default);
+  background-color: var(--bg-default) !important;
 }
 
 .custom-primary-hover:hover {
@@ -193,13 +191,6 @@ footer .custom-icon {
 /* ============= End Styling index page =============*/
 
 /* ============= Start Styling Favorites Popup ============= */
-#popup-container {
-  display: none;
-}
-
-.show {
-  display: block;
-}
 
 .card-w {
   width: 120px;

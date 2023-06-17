@@ -15,6 +15,7 @@ const TextIconButton = ({
     <Button
       className={buttonClassName}
       type="button"
+      onClick={buttonFunction}
     >
       <ion-icon
         class={iconClassName}
