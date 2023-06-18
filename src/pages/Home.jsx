@@ -36,27 +36,22 @@ const Home = () => {
   }, [topics, selectedFilter, selectedSort]);
 
   return (
-    <>
-      <Header />
-      <main className="container-fluid custom-bg-color flex-grow-1">
-        <ActionMenuSection
-          onFilterChange={handleFilterChange}
-          onSortChange={handleSortChange}
-        />
-        {loading ? (
-          <Loading />
-        ) : (
-          <>
-            <h2 className="subtitle fs-5 mb-4 fw-bold error-msg body-text-color">
-              {error ? error : `"${filteredTopics.length}" Web Topics Found`}
-            </h2>
-            <CardsSection topics={filteredTopics} />
-          </>
-        )}
-      </main>
-      <Footer />
-      {isFavoriteShown && <Favorites />}
-    </>
+    <main className="container-fluid custom-bg-color flex-grow-1">
+      <ActionMenuSection
+        onFilterChange={handleFilterChange}
+        onSortChange={handleSortChange}
+      />
+      {loading ? (
+        <Loading />
+      ) : (
+        <>
+          <h2 className="subtitle fs-5 mb-4 fw-bold error-msg body-text-color">
+            {error ? error : `"${filteredTopics.length}" Web Topics Found`}
+          </h2>
+          <CardsSection topics={filteredTopics} />
+        </>
+      )}
+    </main>
   );
 };
 export default Home;
