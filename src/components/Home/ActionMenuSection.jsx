@@ -1,7 +1,8 @@
 import React from "react";
+
 import { SearchInput, SortFilterSelect } from "./";
 
-const ActionMenuSection = ({ onFilterChange, onSortChange }) => {
+const ActionMenuSection = () => {
   return (
     <section
       role="search"
@@ -10,8 +11,6 @@ const ActionMenuSection = ({ onFilterChange, onSortChange }) => {
       <SearchInput />
       <div className="col-12 col-md-4 d-flex fs-6">
         <SortFilterSelect
-          onFilterChange={onFilterChange}
-          onSortChange={onSortChange}
         />
       </div>
     </section>

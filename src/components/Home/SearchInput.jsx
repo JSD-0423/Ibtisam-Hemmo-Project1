@@ -1,15 +1,21 @@
 import React, { useContext, useState } from "react";
+
 import { TopicsContext } from "../../context";
+import { debounce } from "../../utils/debounce";
 import { FormInput } from "../Shared";
 
 const SearchInput = () => {
   const { fetchData } = useContext(TopicsContext);
   const [searchText, setSearchText] = useState("");
 
-  const handleSearch = (e) => {
+  const handleSearch = debounce((value) => {
+    fetchData(value);
+  }, 500);
+
+  const handleChange = (e) => {
     const value = e.target.value;
     setSearchText(value);
-    setTimeout(() => fetchData(value), 2000);
+    handleSearch(value);
   };
 
   return (
@@ -27,7 +33,7 @@ const SearchInput = () => {
         ariaLabel="Search input"
         inputId="search-input"
         value={searchText}
-        onChange={handleSearch}
+        onChange={handleChange}
       />
     </div>
   );
