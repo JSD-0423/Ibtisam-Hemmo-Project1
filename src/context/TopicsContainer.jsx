@@ -23,16 +23,12 @@ export const TopicsContainer = ({ children }) => {
         setFilteredTopics(response);
       }
     } catch (error) {
-      console.log('error: ', error);
-      setError("Failed to fetch topics.");
+      console.log("error: ", error);
+      setError("Failed to fetch topics. Try again later");
     } finally {
       setLoading(false);
     }
   };
-
-  useEffect(() => {
-    fetchData();
-  }, []);
 
   const fetchTopicById = async (id) => {
     setLoading(true);
@@ -41,11 +37,15 @@ export const TopicsContainer = ({ children }) => {
       const response = await fetchTopic(id);
       return response;
     } catch (error) {
-      setError("Failed to fetch topic details.");
+      setError("Failed to fetch topic details. Try again later.");
     } finally {
       setLoading(false);
     }
   };
+
+  useEffect(() => {
+    fetchData();
+  }, []);
 
   useEffect(() => {
     let filtered = [...topics];
@@ -62,7 +62,7 @@ export const TopicsContainer = ({ children }) => {
 
     setFilteredTopics(filtered);
   }, [topics, selectedFilter, selectedSort]);
-  
+
   const handleFilterChange = (selectedValue) => {
     setSelectedFilter(selectedValue);
   };
@@ -82,7 +82,14 @@ export const TopicsContainer = ({ children }) => {
       handleFilterChange,
       handleSortChange,
     }),
-    [topics, loading, error, fetchTopicById, filteredTopics]
+    [
+      topics,
+      fetchData,
+      fetchTopicById,
+      filteredTopics,
+      handleFilterChange,
+      handleSortChange,
+    ]
   );
 
   return (

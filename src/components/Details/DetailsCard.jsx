@@ -30,7 +30,7 @@ const DetailsCard = ({ image, name, id, topic }) => {
               buttonClassName="add-fav align-items-center border-0 card-button d-flex flex-row-reverse fs-6 justify-content-around px-3 py-2 text-white rounded-0"
               iconClassName="heart-icon heard-card md hydrated"
               iconId="heart-icon"
-              iconName="heart-outline"
+              iconName={isFavorite ? "trash-outline" : "heart-outline"}
               buttonSpanText={
                 isFavorite ? "Remove from Favorites" : "Add to Favorites"
               }
