@@ -2,12 +2,22 @@ import React, { createContext, useState, useEffect, useMemo } from "react";
 
 export const FavoritesContext = createContext();
 
+const getStoredFavorites = () => {
+  try {
+    const storedFavorites = localStorage.getItem("favorites");
+    return storedFavorites ? JSON.parse(storedFavorites) : [];
+  } catch (error) {
+    console.error("Error while retrieving favorites from localStorage:", error);
+    return [];
+  }
+};
+
 export const FavoritesProvider = ({ children }) => {
   const [isFavoriteShown, setIsFavoriteShown] = useState(false);
-  const [favoriteTopics, setFavoriteTopics] = useState([]);
+  const [favoriteTopics, setFavoriteTopics] = useState(getStoredFavorites());
 
   const toggleFavoriteContainer = () => {
-    setIsFavoriteShown(!isFavoriteShown);
+    setIsFavoriteShown((prevIsFavoriteShown) => !prevIsFavoriteShown);
   };
 
   const addOrRemoveFavorite = (topicId) => {
@@ -19,24 +29,20 @@ export const FavoritesProvider = ({ children }) => {
   };
 
   const addFavorite = (topicId) => {
-    setFavoriteTopics([...favoriteTopics, topicId]);
+    setFavoriteTopics((prevFavoriteTopics) => [...prevFavoriteTopics, topicId]);
   };
 
   const removeFavorite = (topicId) => {
-    const updatedFavorites = favoriteTopics.filter((id) => id !== topicId);
-    setFavoriteTopics(updatedFavorites);
+    setFavoriteTopics((prevFavoriteTopics) =>
+      prevFavoriteTopics.filter((id) => id !== topicId)
+    );
   };
 
   useEffect(() => {
-    const storedFavorites = localStorage.getItem("favorites");
-    if (storedFavorites) {
-      setFavoriteTopics(JSON.parse(storedFavorites));
-    }
-  }, []);
-
-  useEffect(() => {
-    if (favoriteTopics.length > 0) {
+    try {
       localStorage.setItem("favorites", JSON.stringify(favoriteTopics));
+    } catch (error) {
+      console.error("Error while storing favorites in localStorage:", error);
     }
   }, [favoriteTopics]);
 
@@ -49,7 +55,11 @@ export const FavoritesProvider = ({ children }) => {
     }),
     [isFavoriteShown, favoriteTopics]
   );
-  if (!favoriteTopics) return null;
+
+  if (!favoriteTopics) {
+    return null;
+  }
+
   return (
     <FavoritesContext.Provider value={value}>
       {children}

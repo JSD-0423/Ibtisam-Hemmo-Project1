@@ -4,8 +4,10 @@ import { fetchTopics, fetchTopic } from "../API/API.js";
 export const TopicsContext = createContext();
 
 export const TopicsContainer = ({ children }) => {
-  const [originalTopics, setOriginalTopics] = useState([]);
   const [topics, setTopics] = useState([]);
+  const [filteredTopics, setFilteredTopics] = useState([]);
+  const [selectedFilter, setSelectedFilter] = useState("default");
+  const [selectedSort, setSelectedSort] = useState("default");
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
@@ -15,12 +17,13 @@ export const TopicsContainer = ({ children }) => {
     try {
       const response = await fetchTopics(phrase);
       if (phrase) {
-        setTopics(response);
+        setFilteredTopics(response);
       } else {
         setTopics(response);
-        setOriginalTopics(response);
+        setFilteredTopics(response);
       }
     } catch (error) {
+      console.log('error: ', error);
       setError("Failed to fetch topics.");
     } finally {
       setLoading(false);
@@ -44,6 +47,30 @@ export const TopicsContainer = ({ children }) => {
     }
   };
 
+  useEffect(() => {
+    let filtered = [...topics];
+
+    if (selectedFilter !== "default") {
+      filtered = filtered.filter((topic) => topic.category === selectedFilter);
+    }
+
+    if (selectedSort === "name") {
+      filtered.sort((a, b) => a.name.localeCompare(b.name));
+    } else if (selectedSort === "topic") {
+      filtered.sort((a, b) => a.topic.localeCompare(b.topic));
+    }
+
+    setFilteredTopics(filtered);
+  }, [topics, selectedFilter, selectedSort]);
+  
+  const handleFilterChange = (selectedValue) => {
+    setSelectedFilter(selectedValue);
+  };
+
+  const handleSortChange = (selectedValue) => {
+    setSelectedSort(selectedValue);
+  };
+
   const value = useMemo(
     () => ({
       topics,
@@ -51,9 +78,11 @@ export const TopicsContainer = ({ children }) => {
       error,
       fetchTopicById,
       fetchData,
-      originalTopics,
+      filteredTopics,
+      handleFilterChange,
+      handleSortChange,
     }),
-    [topics, loading, error, fetchTopicById, originalTopics]
+    [topics, loading, error, fetchTopicById, filteredTopics]
   );
 
   return (
