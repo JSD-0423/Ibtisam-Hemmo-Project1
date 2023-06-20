@@ -1,23 +1,12 @@
-import React, { useContext, useState } from "react";
+import React from "react";
 
-import { TopicsContext } from "../../context";
-import { debounce } from "../../utils/debounce";
 import { FormInput } from "../Shared";
 
-const SearchInput = () => {
-  const { fetchData } = useContext(TopicsContext);
-  const [searchText, setSearchText] = useState("");
-
-  const handleSearch = debounce((value) => {
-    fetchData(value);
-  }, 500);
-
-  const handleChange = (e) => {
-    const value = e.target.value;
-    setSearchText(value);
-    handleSearch(value);
+const SearchInput = ({ searchState, onSearchChange }) => {
+  const handleSearchChangeInternal = (e) => {
+    const selectedValue = e.target.value;
+    onSearchChange(selectedValue);
   };
-
   return (
     <div className="align-items-center col-12 col-md-8 d-flex py-md-0 py-sm-3 custom-border-bottom">
       <ion-icon
@@ -32,8 +21,8 @@ const SearchInput = () => {
         placeholder="Search the website..."
         ariaLabel="Search input"
         inputId="search-input"
-        value={searchText}
-        onChange={handleChange}
+        value={searchState}
+        onChange={handleSearchChangeInternal}
       />
     </div>
   );

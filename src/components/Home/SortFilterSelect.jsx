@@ -1,34 +1,21 @@
-import React, { useContext, useEffect, useState } from "react";
-import { TopicsContext } from "../../context";
+import React from "react";
 import SelectMenu from "../Shared/SelectMenu";
 
-const SortFilterSelect = () => {
-  const {
-    topics,
-    selectedFilter,
-    selectedSort,
-    handleFilterChange,
-    handleSortChange,
-  } = useContext(TopicsContext);
-  const [filterOptions, setFilterOptions] = useState([]);
-
-  useEffect(() => {
-    const categories = [...new Set(topics.map((topic) => topic.category))];
-    const options = categories.map((category) => ({
-      value: category,
-      label: category,
-    }));
-    setFilterOptions([{ value: "default", label: "Default" }, ...options]);
-  }, [topics]);
-
+const SortFilterSelect = ({
+  filterOptions,
+  onFilterChange,
+  onSortChange,
+  filterState,
+  sortState,
+}) => {
   const handleFilterChangeInternal = (e) => {
     const selectedValue = e.target.value;
-    handleFilterChange(selectedValue);
+    onFilterChange(selectedValue);
   };
 
   const handleSortChangeInternal = (e) => {
     const selectedValue = e.target.value;
-    handleSortChange(selectedValue);
+    onSortChange(selectedValue);
   };
 
   return (
@@ -46,7 +33,7 @@ const SortFilterSelect = () => {
           { value: "topic", label: "Topic Title" },
           { value: "name", label: "Author Name" },
         ]}
-        value={selectedSort}
+        value={sortState}
         onChange={handleSortChangeInternal}
       />
       <SelectMenu
@@ -58,7 +45,7 @@ const SortFilterSelect = () => {
         selectId="filter-menu"
         selectClassName="custom-select border-none bg-transparent body-text-color"
         options={filterOptions}
-        value={selectedFilter}
+        value={filterState}
         onChange={handleFilterChangeInternal}
       />
     </>
