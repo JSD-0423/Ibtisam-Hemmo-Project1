@@ -1,15 +1,25 @@
-import React from "react";
-import Footer from "../components/Footer";
-import Header from "../components/Header";
-import Main from "../components/Main";
+import React, { useContext } from "react";
+import { TopicsContext } from "../context";
+import { Loading } from "../components/Shared";
+import { ActionMenuSection, CardsSection } from "../components/Home";
 
 const Home = () => {
+  const { filteredTopics, loading, error } = useContext(TopicsContext);
+
   return (
-    <>
-      <Header />
-      <Main />
-      <Footer />
-    </>
+    <main className="container-fluid custom-bg-color flex-grow-1">
+      <ActionMenuSection />
+      {loading ? (
+        <Loading />
+      ) : (
+        <>
+          <h2 className="subtitle fs-5 mb-4 fw-bold error-msg body-text-color">
+            {error ? error : `"${filteredTopics.length}" Web Topics Found`}
+          </h2>
+          <CardsSection topics={filteredTopics} />
+        </>
+      )}
+    </main>
   );
 };
 

@@ -1,6 +1,14 @@
 import React from "react";
 
-const InputForm = ({ type, className, placeholder, ariaLabel, inputId }) => {
+const FormInput = ({
+  type,
+  className,
+  placeholder,
+  ariaLabel,
+  inputId,
+  value,
+  onChange,
+}) => {
   return (
     <input
       type={type}
@@ -8,8 +16,10 @@ const InputForm = ({ type, className, placeholder, ariaLabel, inputId }) => {
       placeholder={placeholder}
       aria-label={ariaLabel}
       id={inputId}
+      value={value}
+      onChange={onChange}
     />
   );
 };
 
-export default InputForm;
+export default FormInput;

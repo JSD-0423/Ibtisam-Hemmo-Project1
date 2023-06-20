@@ -1,8 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import Card from "./Card";
+import TopicCard from "./TopicCard";
 
-const CardWrapper = ({ id, data }) => {
+const CardWrapper = ({ id, topic, image, category, name, rating }) => {
   return (
     <div className="col">
       <Link
@@ -10,7 +10,13 @@ const CardWrapper = ({ id, data }) => {
         className="card custom-default-bg-color overflow-hidden border-0"
         data-index={id}
       >
-        <Card data={data} />
+        <TopicCard
+          topic={topic}
+          image={image}
+          category={category}
+          name={name}
+          rating={rating}
+        />
       </Link>
     </div>
   );

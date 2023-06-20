@@ -3,7 +3,7 @@ import React from "react";
 const Rating = ({ rating }) => {
   const createRatingStars = (rating) => {
     const MAX_STARS = 5;
-    const ratingPercentage = (rating / 100) * MAX_STARS;
+    const ratingPercentage = (rating / 5) * MAX_STARS;
     const wholeStars = Math.floor(ratingPercentage);
     const halfStars = Math.ceil(ratingPercentage - wholeStars);
     const emptyStars = MAX_STARS - wholeStars - halfStars;

@@ -1,14 +1,12 @@
 import React from "react";
-import Rating from "./Rating";
+import { Rating } from "../Shared";
 
-const Card = ({ data }) => {
-  const { img, category, topic, name, rating } = data;
-
+const TopicCard = ({ image, category, name, rating, topic }) => {
   return (
     <>
       <div className="overflow-hidden bg-white">
         <img
-          src={`../assets/images/${img}`}
+          src={`../assets/images/${image}`}
           className="card-img-top object-fit-cover"
         />
       </div>
@@ -28,4 +26,4 @@ const Card = ({ data }) => {
   );
 };
 
-export default Card;
+export default TopicCard;
