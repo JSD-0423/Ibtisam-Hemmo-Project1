@@ -1,27 +1,17 @@
-import React, { useContext, useEffect, useState } from "react";
+import React from "react";
 import { useParams } from "react-router-dom";
+import { fetchTopic } from "../API/API";
 
 import { DetailsWrapper, ListContainer } from "../components/Details";
-import { Header, Footer, Loading, Favorites } from "../components/Shared";
-import { FavoritesContext, TopicsContext } from "../context";
+import { Loading } from "../components/Shared";
+import { useDataFetching } from "../customHooks";
 
 const Details = () => {
   const { id } = useParams();
-  const { error, fetchTopicById } = useContext(TopicsContext);
-  const [topic, setTopic] = useState(null);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    const fetchTopic = async () => {
-      const fetchedTopic = await fetchTopicById(id);
-      setTopic(fetchedTopic);
-      setLoading(false);
-    };
-
-    fetchTopic();
-  }, [id, fetchTopicById]);
+  const { data: topic, loading, error } = useDataFetching(fetchTopic, id);
 
   if (loading) return <Loading />;
+  
   return (
     <main className="flex-grow-1 flex-shrink-0">
       {topic && (

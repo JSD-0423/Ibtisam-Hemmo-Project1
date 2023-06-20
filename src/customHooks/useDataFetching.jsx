@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 
-const useDataFetching = (fetchDataCallback, phrase = "") => {
+const useDataFetching = (fetchDataCallback, ...params) => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -10,7 +10,7 @@ const useDataFetching = (fetchDataCallback, phrase = "") => {
       setLoading(true);
 
       try {
-        const response = await fetchDataCallback(phrase);
+        const response = await fetchDataCallback(...params);
         setData(response);
       } catch (error) {
         console.log("error: ", error);
@@ -21,7 +21,7 @@ const useDataFetching = (fetchDataCallback, phrase = "") => {
     };
 
     fetchData();
-  }, [fetchDataCallback, phrase]);
+  }, [fetchDataCallback, ...params]);
 
   return { data, loading, error };
 };
