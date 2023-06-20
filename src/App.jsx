@@ -5,16 +5,19 @@ import { Home, Details, Layout } from "./pages";
 import "./styles/global.css";
 
 function App() {
-  const router = createBrowserRouter([
-    {
-      path: "/",
-      element: <Layout />,
-      children: [
-        { path: "", element: <Home /> },
-        { path: "details/:id", element: <Details /> },
-      ],
-    },
-  ]);
+  const router = createBrowserRouter(
+    [
+      {
+        path: "/",
+        element: <Layout />,
+        children: [
+          { path: "", element: <Home /> },
+          { path: "details/:id", element: <Details /> },
+        ],
+      },
+    ],
+    { basename: import.meta.env.DEV ? "/" : "/react-vite-gh-pages/" }
+  );
 
   return (
     <ThemeProvider>
