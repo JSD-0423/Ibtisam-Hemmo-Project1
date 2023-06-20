@@ -5,11 +5,10 @@ import { TopicsContext } from "../../context/TopicsContainer";
 import FavoriteItem from "./FavoriteItem";
 
 const Favorites = () => {
-  const { originalTopics } = useContext(TopicsContext);
-  const { favoriteTopics } = useContext(FavoritesContext);
+  const { topics, favoriteTopics } = useContext(FavoritesContext);
 
   const favoriteTopicsData = favoriteTopics.map((topicId) =>
-    originalTopics.find((topic) => topic.id === topicId)
+    topics.find((topic) => topic.id === topicId)
   );
 
   return (

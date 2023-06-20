@@ -1,4 +1,6 @@
 import React, { createContext, useState, useEffect, useMemo } from "react";
+import { fetchTopics } from "../API/API";
+import { useDataFetching } from "../customHooks";
 
 export const FavoritesContext = createContext();
 
@@ -15,6 +17,7 @@ const getStoredFavorites = () => {
 export const FavoritesProvider = ({ children }) => {
   const [isFavoriteShown, setIsFavoriteShown] = useState(false);
   const [favoriteTopics, setFavoriteTopics] = useState(getStoredFavorites());
+  const { data: topics } = useDataFetching(fetchTopics);
 
   const toggleFavoriteContainer = () => {
     setIsFavoriteShown((prevIsFavoriteShown) => !prevIsFavoriteShown);
@@ -52,6 +55,7 @@ export const FavoritesProvider = ({ children }) => {
       toggleFavoriteContainer,
       favoriteTopics,
       addOrRemoveFavorite,
+      topics
     }),
     [isFavoriteShown, favoriteTopics]
   );
