@@ -16,7 +16,7 @@ function App() {
         ],
       },
     ],
-    // { basename: import.meta.env.DEV ? "/" : "/react-vite-gh-pages/" }
+    // { basename: import.meta.env.DEV ? "/" : "/Ibtisam-Hemmo-Project1/" }
   );
 
   return (
