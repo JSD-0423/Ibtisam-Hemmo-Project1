@@ -4,13 +4,13 @@ import { fetchTopics } from "../API/API.js";
 import { Loading } from "../components/Shared";
 import { ActionMenuSection, CardsSection } from "../components/Home";
 
-const Home = () => {
+const Home = ({ imagePath }) => {
   const [selectedFilter, setSelectedFilter] = useState("default");
   const [selectedSort, setSelectedSort] = useState("default");
   const [searchText, setSearchText] = useState("");
   const [filterOptions, setFilterOptions] = useState([]);
   const [filteredTopics, setFilteredTopics] = useState([]);
-  
+
   const debouncedSearchText = useDebounce(searchText, 500);
   const {
     data: topics,
@@ -86,6 +86,7 @@ const Home = () => {
           </h2>
           <CardsSection
             topics={shouldUseFilteredTopics ? filteredTopics : topics}
+            imagePath={imagePath}
           />
         </>
       )}

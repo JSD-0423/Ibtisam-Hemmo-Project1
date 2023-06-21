@@ -5,14 +5,20 @@ import { Home, Details, Layout } from "./pages";
 import "./styles/global.css";
 
 function App() {
+  const isProduction = import.meta.env.PROD;
+
+  const imagePath = isProduction
+    ? "/Ibtisam-Hemmo-Project1/assets/images"
+    : "../assets/images";
+
   const router = createBrowserRouter(
     [
       {
         path: "/",
         element: <Layout />,
         children: [
-          { path: "", element: <Home /> },
-          { path: "details/:id", element: <Details /> },
+          { path: "", element: <Home imagePath={imagePath} /> },
+          { path: "details/:id", element: <Details imagePath={imagePath} /> },
         ],
       },
     ],
@@ -21,9 +27,9 @@ function App() {
 
   return (
     <ThemeProvider>
-        <FavoritesProvider>
-          <RouterProvider router={router} />
-        </FavoritesProvider>
+      <FavoritesProvider>
+        <RouterProvider router={router} />
+      </FavoritesProvider>
     </ThemeProvider>
   );
 }
