@@ -1,6 +1,6 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
-import { FavoritesProvider, TopicsContainer, ThemeProvider } from "./context";
+import { FavoritesProvider, ThemeProvider } from "./context";
 import { Home, Details, Layout } from "./pages";
 import "./styles/global.css";
 
@@ -21,11 +21,9 @@ function App() {
 
   return (
     <ThemeProvider>
-      <TopicsContainer>
         <FavoritesProvider>
           <RouterProvider router={router} />
         </FavoritesProvider>
-      </TopicsContainer>
     </ThemeProvider>
   );
 }

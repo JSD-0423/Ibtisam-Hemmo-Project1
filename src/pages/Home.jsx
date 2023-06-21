@@ -8,9 +8,10 @@ const Home = () => {
   const [selectedFilter, setSelectedFilter] = useState("default");
   const [selectedSort, setSelectedSort] = useState("default");
   const [searchText, setSearchText] = useState("");
-  const debouncedSearchText = useDebounce(searchText, 500);
   const [filterOptions, setFilterOptions] = useState([]);
-
+  const [filteredTopics, setFilteredTopics] = useState([]);
+  
+  const debouncedSearchText = useDebounce(searchText, 500);
   const {
     data: topics,
     loading,
@@ -26,10 +27,14 @@ const Home = () => {
     setFilterOptions([{ value: "default", label: "Default" }, ...options]);
   }, [topics]);
 
+  useEffect(() => {
+    handleFilterSort(topics);
+  }, [selectedFilter, selectedSort, topics]);
+
   const handleSearchChange = (selectedValue) => {
     setSearchText(selectedValue);
   };
-  
+
   const handleFilterChange = (selectedValue) => {
     setSelectedFilter(selectedValue);
   };
@@ -38,19 +43,25 @@ const Home = () => {
     setSelectedSort(selectedValue);
   };
 
-  let filteredTopics = [...topics];
+  const handleFilterSort = (topics) => {
+    let altered = [...topics];
 
-  if (selectedFilter !== "default") {
-    filteredTopics = filteredTopics.filter(
-      (topic) => topic.category === selectedFilter
-    );
-  }
+    if (selectedFilter !== "default") {
+      altered = altered.filter((topic) => topic.category === selectedFilter);
+    }
 
-  if (selectedSort === "name") {
-    filteredTopics.sort((a, b) => a.name.localeCompare(b.name));
-  } else if (selectedSort === "topic") {
-    filteredTopics.sort((a, b) => a.topic.localeCompare(b.topic));
-  }
+    if (selectedSort === "name") {
+      altered.sort((a, b) => a.name.localeCompare(b.name));
+    } else if (selectedSort === "topic") {
+      altered.sort((a, b) => a.topic.localeCompare(b.topic));
+    }
+
+    setFilteredTopics(altered);
+  };
+
+  const shouldUseFilteredTopics =
+    selectedFilter !== "default" || selectedSort !== "default";
+
   return (
     <main className="container-fluid custom-bg-color flex-grow-1">
       <ActionMenuSection
@@ -67,9 +78,15 @@ const Home = () => {
       ) : (
         <>
           <h2 className="subtitle fs-5 mb-4 fw-bold error-msg body-text-color">
-            {error ? error : `"${filteredTopics.length}" Web Topics Found`}
+            {error
+              ? error
+              : shouldUseFilteredTopics
+              ? `"${filteredTopics.length}" Web Topics Found`
+              : `"${topics.length}" Web Topics Found`}
           </h2>
-          <CardsSection topics={filteredTopics} />
+          <CardsSection
+            topics={shouldUseFilteredTopics ? filteredTopics : topics}
+          />
         </>
       )}
     </main>
