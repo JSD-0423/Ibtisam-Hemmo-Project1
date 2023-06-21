@@ -16,7 +16,7 @@ function App() {
         ],
       },
     ],
-    // { basename: import.meta.env.DEV ? "/" : "/Ibtisam-Hemmo-Project1/" }
+    { basename: import.meta.env.DEV ? "/" : "/Ibtisam-Hemmo-Project1/" }
   );
 
   return (
