@@ -1,12 +1,12 @@
 import React from "react";
 import { Rating } from "../Shared";
 
-const TopicCard = ({ image, category, name, rating, topic, imagePath }) => {
+const TopicCard = ({ image, category, name, rating, topic }) => {
   return (
     <>
       <div className="overflow-hidden bg-white">
         <img
-          src={`${imagePath}/${image}`}
+          src={`/assets/images/${image}`}
           className="card-img-top object-fit-cover"
         />
       </div>

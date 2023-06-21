@@ -9,7 +9,6 @@ const CardWrapper = ({
   category,
   name,
   rating,
-  imagePath,
 }) => {
   return (
     <div className="col">
@@ -24,7 +23,6 @@ const CardWrapper = ({
           category={category}
           name={name}
           rating={rating}
-          imagePath={imagePath}
         />
       </Link>
     </div>

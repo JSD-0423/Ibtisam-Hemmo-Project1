@@ -4,7 +4,7 @@ import { fetchTopics } from "../API/API.js";
 import { Loading } from "../components/Shared";
 import { ActionMenuSection, CardsSection } from "../components/Home";
 
-const Home = ({ imagePath }) => {
+const Home = () => {
   const [selectedFilter, setSelectedFilter] = useState("default");
   const [selectedSort, setSelectedSort] = useState("default");
   const [searchText, setSearchText] = useState("");
@@ -86,7 +86,6 @@ const Home = ({ imagePath }) => {
           </h2>
           <CardsSection
             topics={shouldUseFilteredTopics ? filteredTopics : topics}
-            imagePath={imagePath}
           />
         </>
       )}
