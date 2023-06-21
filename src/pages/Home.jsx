@@ -10,7 +10,7 @@ const Home = () => {
   const [searchText, setSearchText] = useState("");
   const [filterOptions, setFilterOptions] = useState([]);
   const [filteredTopics, setFilteredTopics] = useState([]);
-  
+
   const debouncedSearchText = useDebounce(searchText, 500);
   const {
     data: topics,

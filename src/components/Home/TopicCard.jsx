@@ -6,7 +6,7 @@ const TopicCard = ({ image, category, name, rating, topic }) => {
     <>
       <div className="overflow-hidden bg-white">
         <img
-          src={`../assets/images/${image}`}
+          src={`/assets/images/${image}`}
           className="card-img-top object-fit-cover"
         />
       </div>

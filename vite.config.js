@@ -14,7 +14,3 @@ export default defineConfig(({ command }) => {
 
   return config
 })
-// export default defineConfig({
-//   base: "/",
-//   plugins: [react()],
-// })

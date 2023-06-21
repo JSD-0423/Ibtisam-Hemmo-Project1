@@ -5,6 +5,7 @@ import { Home, Details, Layout } from "./pages";
 import "./styles/global.css";
 
 function App() {
+
   const router = createBrowserRouter(
     [
       {
@@ -21,9 +22,9 @@ function App() {
 
   return (
     <ThemeProvider>
-        <FavoritesProvider>
-          <RouterProvider router={router} />
-        </FavoritesProvider>
+      <FavoritesProvider>
+        <RouterProvider router={router} />
+      </FavoritesProvider>
     </ThemeProvider>
   );
 }
