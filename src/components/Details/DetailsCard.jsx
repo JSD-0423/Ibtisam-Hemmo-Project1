@@ -12,7 +12,7 @@ const DetailsCard = ({ image, name, id, topic }) => {
     >
       <div className="overflow-hidden">
         <img
-          src={`/assets/images/${image}`}
+          src={`/Ibtisam-Hemmo-Project1/assets/images/${image}`}
           alt={topic}
           className="card-img-top object-fit-cover"
         />
